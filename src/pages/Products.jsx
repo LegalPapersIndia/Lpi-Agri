@@ -17,7 +17,11 @@ export default function Products() {
 
   const allProducts = useMemo(() => {
     return productCategories.flatMap(cat => 
-      cat.products.map(p => ({ ...p, categoryName: t(cat.id) || cat.name, categoryId: cat.id }))
+      cat.products.map(p => ({ 
+        ...p, 
+        categoryName: t(cat.id) || cat.name, 
+        categoryId: cat.id 
+      }))
     );
   }, [t]);
 
@@ -30,104 +34,100 @@ export default function Products() {
 
   const container = {
     hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.15 } }
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const item = {
-    hidden: { y: 100, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { y: 60, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 0.7 } }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-green-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-green-50">
 
-      {/* Hero */}
-      <section className="relative py-32 bg-gradient-to-br from-emerald-900 via-green-800 to-lime-900">
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(60)].map((_, i) => (
+      {/* HERO - Mobile Optimized */}
+      <section className="relative py-20 md:py-32 bg-gradient-to-br from-emerald-900 via-green-800 to-lime-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-15">
+          {[...Array(25)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute bottom-0 w-2 bg-gradient-to-t from-amber-400 to-yellow-300"
-              style={{
-                height: `${150 + Math.random() * 200}px`,
-                left: `${(i / 60) * 100}%`,
-                transform: `translateX(-50%) rotate(${Math.random() * 30 - 15}deg)`,
+              className="absolute bottom-0 w-1 md:w-2 bg-gradient-to-t from-amber-400 to-yellow-300"
+              style={{ 
+                height: `${100 + Math.random() * 150}px`, 
+                left: `${(i / 25) * 100}%`,
+                transform: "translateX(-50%)"
               }}
-              animate={{ y: [0, -100, 0] }}
-              transition={{ duration: 10 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 5 }}
+              animate={{ y: [0, -70, 0] }}
+              transition={{ duration: 12 + Math.random() * 8, repeat: Infinity }}
             />
           ))}
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 text-center text-white">
           <motion.h1
-            initial={{ y: 100, opacity: 0 }}
+            initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-7xl md:text-9xl font-black tracking-tight"
+            transition={{ duration: 0.9 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight"
           >
-            <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent">
               Premium Export
             </span>
-            <br />
-            <span className="text-white">Products</span>
+            <span className="block text-white mt-2">Products</span>
           </motion.h1>
 
           <motion.p
-            initial={{ y: 60, opacity: 0 }}
+            initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-3xl md:text-5xl font-bold mt-8 text-amber-100"
+            transition={{ delay: 0.4 }}
+            className="text-xl md:text-3xl lg:text-4xl font-bold mt-6 text-amber-100"
           >
-            1000 KG MOQ • Real-Time Prices • Direct from India
+            1000 KG MOQ • Live Prices • Direct from India
           </motion.p>
 
-          <div className="flex justify-center gap-12 mt-16 text-2xl font-bold">
-            <div className="flex items-center gap-4">
-              <Globe className="w-12 h-12 text-amber-400" />
-              <span>50+ Countries</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Zap className="w-12 h-12 text-amber-400" />
-              <span>Live Pricing</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <CheckCircle2 className="w-12 h-12 text-amber-400" />
-              <span>100% Certified</span>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12 max-w-4xl mx-auto">
+            {[
+              { icon: Globe, text: "50+ Countries" },
+              { icon: Zap, text: "Live Pricing" },
+              { icon: CheckCircle2, text: "100% Certified" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.7 + i * 0.15 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-amber-400/30"
+              >
+                <item.icon className="w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 text-amber-400" />
+                <p className="text-lg md:text-xl font-bold">{item.text}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Filters - Sticky Golden Bar */}
+      {/* STICKY FILTER BAR - Mobile-Friendly */}
       <div className="sticky top-0 z-50 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400 shadow-2xl">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto px-6 py-5">
+          <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-3 gap-4">
             {/* Search */}
-            <motion.div
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="relative"
-            >
-              <Search className="absolute left-6 top-6 w-8 h-8 text-green-900" />
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-green-900" />
               <input
                 type="text"
-                placeholder="Search 100+ premium products..."
+                placeholder="Search products..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-20 pr-8 py-6 rounded-full bg-white/90 backdrop-blur-lg shadow-xl text-xl font-medium text-green-900 placeholder-green-600 focus:outline-none focus:ring-4 focus:ring-amber-300"
+                className="w-full pl-14 pr-12 py-5 rounded-full bg-white/95 shadow-lg text-lg font-medium text-green-900 placeholder-green-600 focus:outline-none focus:ring-4 focus:ring-amber-300"
               />
-              <Sparkles className="absolute right-6 top-6 w-8 h-8 text-amber-600" />
-            </motion.div>
+              <Sparkles className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-amber-600" />
+            </div>
 
-            {/* Category Filter */}
-            <motion.select
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
+            {/* Category */}
+            <select
               value={categoryFilter}
               onChange={e => setCategoryFilter(e.target.value)}
-              className="px-10 py-6 rounded-full bg-white/90 backdrop-blur-lg shadow-xl text-xl font-medium text-green-900 focus:outline-none focus:ring-4 focus:ring-amber-300"
+              className="w-full px-6 py-5 rounded-full bg-white/95 shadow-lg text-lg font-medium text-green-900 focus:outline-none focus:ring-4 focus:ring-amber-300"
             >
               <option value="all">All Categories</option>
               {productCategories.map(cat => (
@@ -135,17 +135,12 @@ export default function Products() {
                   {t(cat.id) || cat.name} ({cat.products.length})
                 </option>
               ))}
-            </motion.select>
+            </select>
 
             {/* Price Range */}
-            <motion.div
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center gap-6 bg-white/90 backdrop-blur-lg rounded-full px-8 py-6 shadow-xl"
-            >
-              <IndianRupee className="w-10 h-10 text-green-700" />
-              <span className="text-2xl font-black text-green-900">
+            <div className="flex items-center gap-4 bg-white/95 rounded-full px-6 py-5 shadow-lg">
+              <IndianRupee className="w-8 h-8 text-green-700 flex-shrink-0" />
+              <span className="text-xl font-bold text-green-900">
                 ₹{priceRange[0].toLocaleString()} - ₹{priceRange[1].toLocaleString()}
               </span>
               <input
@@ -153,83 +148,81 @@ export default function Products() {
                 min="0" max="5000" step="100"
                 value={priceRange[1]}
                 onChange={e => setPriceRange([priceRange[0], +e.target.value])}
-                className="flex-1 h-3 bg-amber-200 rounded-lg appearance-none cursor-pointer slider-thumb"
+                className="flex-1 h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Products Grid - Luxury Cards */}
-      <section className="py-24">
+      {/* PRODUCTS GRID */}
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
           >
-            {filtered.map((product, i) => (
+            {filtered.map((product) => (
               <motion.div
                 key={product.id}
                 variants={item}
-                whileHover={{ y: -20, scale: 1.03 }}
-                className="group relative"
+                whileHover={{ y: -12, scale: 1.02 }}
+                className="group"
               >
-                {/* Golden Glow on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-3xl blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-700" />
-
                 <Link
                   to={`/products/${product.categoryId}/${product.id}`}
-                  className="block relative bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-transparent hover:border-amber-400 transition-all duration-500"
+                  className="block bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border-4 border-transparent hover:border-amber-400 transition-all duration-400"
                 >
                   {/* Image */}
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative h-56 md:h-72 overflow-hidden">
                     <img
                       src={product.images[0]}
                       alt={product.name}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+
                     {/* MOQ Badge */}
-                    <div className="absolute top-6 left-6 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-6 py-3 rounded-full font-black shadow-xl flex items-center gap-2">
-                      <Package className="w-6 h-6" />
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-1">
+                      <Package className="w-5 h-5" />
                       {product.moq}
                     </div>
 
-                    {/* Live Price Tag */}
-                    <div className="absolute bottom-6 right-6 bg-green-600 text-white px-6 py-3 rounded-full font-black shadow-xl flex items-center gap-2">
-                      <Zap className="w-6 h-6" />
+                    {/* Live Price Tag
+                    <div className="absolute bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-1">
+                      <Zap className="w-5 h-5" />
                       LIVE PRICE
                     </div>
+                    */ }
                   </div>
 
-                  {/* Content */}
-                  <div className="p-8 bg-gradient-to-b from-white to-amber-50">
-                    <p className="text-green-600 font-bold text-sm uppercase tracking-wider">
+                  <div className="p-6 md:p-8 bg-gradient-to-b from-white to-amber-50">
+                    <p className="text-green-600 font-bold text-xs uppercase tracking-wider">
                       {product.categoryName}
                     </p>
-                    <h3 className="text-2xl font-black text-gray-800 mt-3 line-clamp-2">
+                    <h3 className="text-xl md:text-2xl font-black text-gray-800 mt-2 line-clamp-2">
                       {product.name}
                     </h3>
-                    <p className="text-gray-600 mt-4 line-clamp-2 text-sm">
+                    <p className="text-gray-600 text-sm mt-3 line-clamp-2">
                       {product.description}
                     </p>
 
-                    <div className="mt-8 flex items-end justify-between">
+                    <div className="mt-6 flex items-end justify-between">
                       <div>
-                        <p className="text-4xl font-black text-emerald-700">
+                        <p className="text-2xl md:text-3xl font-black text-emerald-700">
                           ₹{product.pricePerTon.toLocaleString()}
                         </p>
-                        <p className="text-sm text-gray-500 font-medium">per Metric Ton (FOB)</p>
+                        <p className="text-xs md:text-sm text-gray-500">per MT (FOB India)</p>
                       </div>
                       <motion.div
-                        whileHover={{ x: 10 }}
-                        className="bg-gradient-to-r from-emerald-600 to-green-700 p-4 rounded-full text-white shadow-xl"
+                        whileHover={{ x: 8 }}
+                        className="bg-gradient-to-r from-emerald-600 to-green-700 p-3 md:p-4 rounded-full text-white shadow-lg"
                       >
-                        <ArrowRight className="w-8 h-8" />
+                        <ArrowRight className="w-6 h-6 md:w-8 md:h-8" />
                       </motion.div>
                     </div>
                   </div>
@@ -240,42 +233,37 @@ export default function Products() {
 
           {/* No Results */}
           {filtered.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-32"
-            >
-              <Wheat className="w-32 h-32 mx-auto text-amber-300 mb-8" />
-              <h3 className="text-4xl font-black text-gray-600">No products found</h3>
-              <p className="text-xl text-gray-500 mt-4">Try adjusting your filters</p>
-            </motion.div>
+            <div className="text-center py-20">
+              <Wheat className="w-24 h-24 mx-auto text-amber-300 mb-6" />
+              <h3 className="text-3xl md:text-4xl font-black text-gray-600">No products found</h3>
+              <p className="text-lg text-gray-500 mt-4">Try adjusting your filters</p>
+            </div>
           )}
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-32 bg-gradient-to-r from-emerald-900 via-green-800 to-lime-900 text-white text-center">
-        <div className="max-w-5xl mx-auto px-6">
+      {/* FINAL CTA */}
+      <section className="py-20 md:py-32 bg-gradient-to-r from-emerald-900 via-green-800 to-lime-900 text-white text-center">
+        <div className="max-w-4xl mx-auto px-6">
           <motion.h2
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            className="text-6xl md:text-8xl font-black mb-10"
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-8"
           >
-            Ready to Import Premium Indian Products?
+            Ready to Import from India?
           </motion.h2>
 
           <motion.a
             href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20want%20to%20see%20latest%20prices"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-8 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-20 py-10 rounded-full text-4xl font-black uppercase tracking-wider shadow-3xl overflow-hidden"
+            className="inline-flex items-center gap-4 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-10 py-6 md:px-20 md:py-10 rounded-full text-2xl md:text-4xl font-black uppercase tracking-wider shadow-2xl overflow-hidden"
           >
-            <Package className="w-12 h-12 group-hover:rotate-12 transition" />
-            <span className="relative z-10">Get Live Quote Now</span>
-            <ArrowRight className="w-12 h-12 group-hover:translate-x-6 transition" />
-            <motion.div className="absolute inset-0 bg-white" initial={{ x: "-100%" }} whileHover={{ x: "100%" }} transition={{ duration: 0.8 }} />
+            <Package className="w-10 h-10 md:w-12 md:h-12" />
+            Get Live Quote Now
+            <ArrowRight className="w-10 h-10 md:w-12 md:h-12" />
           </motion.a>
         </div>
       </section>
