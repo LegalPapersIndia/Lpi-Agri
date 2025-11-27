@@ -3,7 +3,7 @@ import React from 'react';
 import { useLanguage } from '../config/LanguageContext';
 import { 
   Globe, Users, Award, Target, Eye, Shield, Truck, Leaf,
-  Building2, Handshake, CheckCircle, Sparkles, Wheat, ArrowRight, Zap
+  Building2, Handshake, CheckCircle, Sparkles, Wheat, ArrowRight
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -24,62 +24,67 @@ export default function About() {
   ];
 
   const team = [
-    { name: "Mr. Rajesh Patel", role: "Founder & CEO", desc: "25+ years in agri export. Built LPI Agri from ground up.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80" },
-    { name: "Mrs. Priya Sharma", role: "Director - Quality", desc: "Former FSSAI auditor. Zero-compromise quality.", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" },
-    { name: "Mr. Ahmed Khan", role: "Export Manager - MEA", desc: "Fluent in Arabic. Serves UAE, KSA, Africa.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" },
-    { name: "Ms. Elena Petrova", role: "Export Manager - CIS", desc: "Native Russian. Leads Russia & Central Asia.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80" }
+    { name: "Mr. Rajesh Patel", role: "Founder & CEO", desc: "25+ years in agri export. Built LPI Agri from ground up.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" },
+    { name: "Mrs. Priya Sharma", role: "Director - Quality", desc: "Former FSSAI auditor. Zero-compromise quality.", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" },
+    { name: "Mr. Ahmed Khan", role: "Export Manager - MEA", desc: "Fluent in Arabic. Serves UAE, KSA, Africa.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
+    { name: "Ms. Elena Petrova", role: "Export Manager - CIS", desc: "Native Russian. Leads Russia & Central Asia.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-green-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-green-50">
 
-      {/* HERO - Golden Luxury */}
-      <section className="relative bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900 py-32">
-        <div className="absolute inset-0 opacity-30">
-          {[...Array(40)].map((_, i) => (
+      {/* HERO - Mobile Optimized */}
+      <section className="relative bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900 py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute bottom-0 w-2 bg-gradient-to-t from-amber-400 to-yellow-300"
-              style={{ height: `${150 + Math.random() * 200}px`, left: `${(i / 40) * 100}%`, transform: "translateX(-50%)" }}
-              animate={{ y: [0, -80, 0] }}
-              transition={{ duration: 12 + Math.random() * 8, repeat: Infinity, delay: Math.random() * 5 }}
+              className="absolute bottom-0 w-1 md:w-2 bg-gradient-to-t from-amber-400 to-yellow-300"
+              style={{ 
+                height: `${100 + Math.random() * 150}px`, 
+                left: `${(i / 20) * 100}%`, 
+                transform: "translateX(-50%)" 
+              }}
+              initial={{ y: 0 }}
+              animate={{ y: [-60, 0] }}
+              transition={{ duration: 10 + Math.random() * 10, repeat: Infinity, delay: Math.random() * 3 }}
             />
           ))}
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.h1
-            initial={{ y: 100, opacity: 0 }}
+            initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2 }}
-            className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 drop-shadow-2xl"
+            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200"
           >
             LPI AGRI
           </motion.h1>
           <motion.p
-            initial={{ y: 60, opacity: 0 }}
+            initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1 }}
-            className="text-3xl md:text-5xl text-amber-100 font-bold mt-6 tracking-widest"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-xl md:text-3xl lg:text-5xl text-amber-100 font-bold mt-4 md:mt-6 tracking-wide"
           >
             Connecting India’s Golden Harvest to the World
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-12 mt-12 md:mt-20">
             {[
               { icon: Globe, text: "50+ Countries" },
-              { icon: Truck, text: "Door-to-Door Global Delivery" },
-              { icon: Shield, text: "100% Quality Guarantee" }
+              { icon: Truck, text: "Global Delivery" },
+              { icon: Shield, text: "100% Quality" }
             ].map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 1 + i * 0.2, type: "spring", stiffness: 200 }}
-                className="bg-white/10 backdrop-blur-lg rounded-3xl p-10 border border-amber-400/30"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.8 + i * 0.2 }}
+                className="bg-white/10 backdrop-blur-lg rounded-2xl md:rounded-3xl p-6 md:p-10 border border-amber-400/30"
               >
-                <item.icon className="w-20 h-20 mx-auto mb-6 text-amber-400" />
-                <p className="text-2xl font-bold text-white">{item.text}</p>
+                <item.icon className="w-12 h-12 md:w-20 md:h-20 mx-auto mb-4 text-amber-400" />
+                <p className="text-lg md:text-2xl font-bold text-white">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -87,71 +92,70 @@ export default function About() {
       </section>
 
       {/* COMPANY OVERVIEW + STATS */}
-      <section className="py-32">
+      <section className="py-16 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
-              initial={{ x: -100, opacity: 0 }}
+              initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              <h2 className="text-6xl font-black text-emerald-800 mb-10">Who We Are</h2>
-              <p className="text-2xl text-gray-700 leading-relaxed mb-8">
+              <h2 className="text-4xl md:text-6xl font-black text-emerald-800 mb-6 md:mb-10">Who We Are</h2>
+              <p className="text-lg md:text-2xl text-gray-700 leading-relaxed mb-6">
                 <strong className="text-amber-600">LPI Agri</strong> is India’s most trusted agri-export powerhouse, 
                 founded in 2015 from the heart of Gujarat — India’s farming capital.
               </p>
-              <p className="text-2xl text-gray-700 leading-relaxed mb-8">
-                We eliminated middlemen and built direct relationships with <strong className="text-emerald-700">over 1 Million farmers</strong> across Punjab, Haryana, Rajasthan & MP.
+              <p className="text-lg md:text-2xl text-gray-700 leading-relaxed mb-6">
+                We eliminated middlemen and built direct relationships with <strong className="text-emerald-700">over 1 Million farmers</strong> across India.
               </p>
-              <p className="text-2xl text-gray-700 leading-relaxed">
-                From our own warehouses at <strong className="text-amber-600">Mundra & Kandla Ports</strong>, we deliver premium Basmati, Spices, Pulses & Oilseeds to <strong className="text-emerald-700">50+ countries</strong> with full traceability and zero compromise.
+              <p className="text-lg md:text-2xl text-gray-700 leading-relaxed">
+                From our warehouses at <strong className="text-amber-600">Mundra & Kandla Ports</strong>, we deliver premium grains & spices to <strong className="text-emerald-700">50+ countries</strong> with full traceability.
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-8"
-            >
+            <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="bg-gradient-to-br from-amber-400 to-yellow-500 text-white rounded-3xl p-10 shadow-2xl text-center"
+                    whileHover={{ scale: 1.05 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-gradient-to-br from-amber-400 to-yellow-500 text-white rounded-2xl p-6 md:p-10 shadow-xl text-center"
                   >
-                    <Icon className="w-16 h-16 mx-auto mb-4" />
-                    <div className="text-5xl font-black">{stat.number}</div>
-                    <p className="text-lg font-bold mt-3">{stat.label}</p>
+                    <Icon className="w-10 h-10 md:w-16 md:h-16 mx-auto mb-3" />
+                    <div className="text-3xl md:text-5xl font-black">{stat.number}</div>
+                    <p className="text-sm md:text-lg font-bold mt-2">{stat.label}</p>
                   </motion.div>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* MISSION & VISION */}
-      <section className="py-32 bg-gradient-to-r from-emerald-800 to-green-900 text-white">
+      <section className="py-16 md:py-32 bg-gradient-to-r from-emerald-800 to-green-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            initial={{ y: 80, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            className="text-7xl font-black text-center mb-20 text-amber-300"
+            className="text-4xl md:text-7xl font-black text-center mb-12 md:mb-20 text-amber-300"
           >
             Our Mission & Vision
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-10">
             <motion.div
-              initial={{ x: -100, opacity: 0 }}
+              initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              className="bg-white/10 backdrop-blur-xl rounded-3xl p-16 border border-amber-400/30"
+              className="bg-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl p-8 md:p-16 border border-amber-400/30"
             >
-              <Target className="w-24 h-24 mx-auto mb-10 text-amber-400" />
-              <h3 className="text-5xl font-black text-center mb-10">Our Mission</h3>
+              <Target className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-6 md:mb-10 text-amber-400" />
+              <h3 className="text-3xl md:text-5xl font-black text-center mb-8">Our Mission</h3>
               {[
                 "Connect farmers directly to global buyers",
                 "100% traceability from farm to fork",
@@ -160,98 +164,93 @@ export default function About() {
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ x: -50, opacity: 0 }}
+                  initial={{ x: -30, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.2 }}
-                  className="flex items-center gap-6 text-2xl mb-8"
+                  transition={{ delay: i * 0.15 }}
+                  className="flex items-center gap-4 text-lg md:text-2xl mb-6"
                 >
-                  <CheckCircle className="w-10 h-10 text-amber-400 flex-shrink-0" />
+                  <CheckCircle className="w-8 h-8 md:w-10 md:h-10 text-amber-400 flex-shrink-0" />
                   <span>{item}</span>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.div
-              initial={{ x: 100, opacity: 0 }}
+              initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
-              className="bg-gradient-to-br from-amber-500 to-yellow-600 rounded-3xl p-16 shadow-3xl"
+              className="bg-gradient-to-br from-amber-500 to-yellow-600 rounded-2xl md:rounded-3xl p-8 md:p-16 shadow-2xl"
             >
-              <Eye className="w-24 h-24 mx-auto mb-10" />
-              <h3 className="text-5xl font-black text-center mb-10 text-green-900">Our Vision 2030</h3>
-              <p className="text-3xl font-bold text-center leading-relaxed text-green-900">
-                To become the <span className="text-white">#1 Most Trusted Indian Agri Brand Worldwide</span> — 
-                known for unmatched quality, transparency, and farmer-first values.
+              <Eye className="w-16 h-16 md:w-24 md:h-24 mx-auto mb-6 md:mb-10" />
+              <h3 className="text-3xl md:text-5xl font-black text-center mb-6 text-green-900">Vision 2030</h3>
+              <p className="text-xl md:text-3xl font-bold text-center leading-relaxed text-green-900">
+                To become the <span className="text-white">#1 Trusted Indian Agri Brand Worldwide</span>
               </p>
-              <div className="grid grid-cols-2 gap-8 mt-12">
-                <div className="text-center">
-                  <Leaf className="w-20 h-20 mx-auto mb-4" />
-                  <p className="text-2xl font-black">100% Sustainable</p>
-                </div>
-                <div className="text-center">
-                  <Handshake className="w-20 h-20 mx-auto mb-4" />
-                  <p className="text-2xl font-black">Farmer-First</p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CERTIFICATIONS - Golden Gallery */}
-      <section className="py-32 bg-white">
+      {/* CERTIFICATIONS */}
+      <section className="py-16 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            initial={{ y: 80, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            className="text-7xl font-black text-center text-emerald-800 mb-20"
+            className="text-4xl md:text-7xl font-black text-center text-emerald-800 mb-12"
           >
-            Certifications & Compliance
+            Certifications
           </motion.h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                className="bg-gradient-to-br from-amber-100 to-green-50 rounded-3xl p-10 text-center shadow-xl border-4 border-amber-300 hover:border-amber-500 transition-all"
+                whileHover={{ scale: 1.1 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-gradient-to-br from-amber-100 to-green-50 rounded-2xl p-6 text-center shadow-lg border-2 border-amber-300"
               >
-                <Award className="w-20 h-20 mx-auto mb-6 text-amber-600" />
-                <p className="text-lg font-black text-emerald-800">{cert}</p>
+                <Award className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 text-amber-600" />
+                <p className="text-sm md:text-base font-bold text-emerald-800">{cert}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* LEADERSHIP TEAM */}
-      <section className="py-32 bg-gradient-to-b from-gray-100 to-white">
+      {/* TEAM */}
+      <section className="py-16 md:py-32 bg-gradient-to-b from-gray-100 to-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2
-            initial={{ y: 80, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            className="text-7xl font-black text-center text-emerald-800 mb-20"
+            className="text-4xl md:text-7xl font-black text-center text-emerald-800 mb-12"
           >
             Meet Our Leadership
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, i) => (
               <motion.div
                 key={i}
-                initial={{ y: 100, opacity: 0 }}
+                initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.2 }}
-                whileHover={{ y: -20 }}
-                className="group relative"
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -10 }}
+                className="group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-3xl blur-3xl opacity-0 group-hover:opacity-70 transition-opacity" />
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-transparent group-hover:border-amber-400 transition-all">
-                  <img src={member.img} alt={member.name} className="w-full h-96 object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-3xl font-black">{member.name}</h3>
-                    <p className="text-xl font-bold text-amber-300">{member.role}</p>
-                    <p className="mt-4 text-lg">{member.desc}</p>
+                <div className="bg-white rounded-2xl overflow-hidden shadow-xl">
+                  <img 
+                    src={member.img} 
+                    alt={member.name}
+                    className="w-full h-64 md:h-80 object-cover"
+                    loading="lazy"
+                  />
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl md:text-2xl font-black text-emerald-800">{member.name}</h3>
+                    <p className="text-amber-600 font-bold text-lg">{member.role}</p>
+                    <p className="mt-3 text-gray-600 text-sm md:text-base">{member.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -260,37 +259,27 @@ export default function About() {
         </div>
       </section>
 
-      {/* FINAL EPIC CTA */}
-      <section className="py-32 bg-gradient-to-r from-emerald-900 via-green-800 to-lime-900 text-white relative overflow-hidden">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-40 -right-40 text-amber-400 opacity-10"
-        >
-          <Wheat className="w-96 h-96" />
-        </motion.div>
-
-        <div className="max-w-5xl mx-auto text-center px-6 relative z-10">
-          <Building2 className="w-32 h-32 mx-auto mb-10 text-amber-400" />
-          <h2 className="text-6xl md:text-8xl font-black mb-10">
-            Ready to Partner with India’s Most Trusted Agri Exporter?
+      {/* FINAL CTA */}
+      <section className="py-20 md:py-32 bg-gradient-to-r from-emerald-900 via-green-800 to-lime-900 text-white">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <Handshake className="w-20 h-20 md:w-32 md:h-32 mx-auto mb-6 text-amber-400" />
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6">
+            Ready to Import from India?
           </h2>
-          <p className="text-3xl mb-16 text-amber-100 font-medium">
-            Join 200+ global importers who chose LPI Agri for quality, reliability & growth
+          <p className="text-xl md:text-3xl mb-10 text-amber-100">
+            Join 200+ global partners who trust LPI Agri
           </p>
 
           <motion.a
             href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20want%20to%20start%20importing%20from%20India"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-8 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-20 py-10 rounded-full text-4xl font-black uppercase tracking-wider shadow-3xl overflow-hidden"
+            className="inline-flex items-center gap-4 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-10 py-6 rounded-full text-2xl md:text-3xl font-black shadow-2xl"
           >
-            <Handshake className="w-14 h-14 group-hover:rotate-12 transition" />
-            <span className="relative z-10">Start Importing Today</span>
-            <ArrowRight className="w-14 h-14 group-hover:translate-x-6 transition" />
-            <motion.div className="absolute inset-0 bg-white" initial={{ x: "-100%" }} whileHover={{ x: "100%" }} transition={{ duration: 0.8 }} />
+            Start Importing Today
+            <ArrowRight className="w-10 h-10" />
           </motion.a>
         </div>
       </section>
