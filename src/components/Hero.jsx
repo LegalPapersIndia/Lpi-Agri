@@ -102,8 +102,8 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter leading-none">
-              <span className="inline-block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent drop-shadow-2xl mt-7">
+            <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter leading-none mt-20">
+              <span className="inline-block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent drop-shadow-2xl">
                 LPI
               </span>
               <span className="inline-block text-white ml-4 md:ml-8">
