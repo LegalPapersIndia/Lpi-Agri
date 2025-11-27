@@ -12,7 +12,7 @@ export const productCategories = [
         length: "8.30+ mm",
         pricePerTon: 1350,
         moq: "1000 KG (1 Ton)",
-        images: ["https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://www.mahavirricemill.com/uploads/product/1121%20Golden%20Sella%20Basmati%20Rice-min_16963308342614.jpg"],
         certifications: ["APEDA", "FSSAI", "ISO 22000", "Halal", "USDA Organic", "EU Organic"],
         category: "rice"
       },
@@ -24,7 +24,7 @@ export const productCategories = [
         length: "7.8+ mm",
         pricePerTon: 1150,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4113458/pexels-photo-4113458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://5.imimg.com/data5/SELLER/Default/2024/9/448963920/GL/RD/MQ/146526101/1509-basmati-rice-500x500.jpg"],
         certifications: ["APEDA", "FSSAI", "Halal"],
         category: "rice"
       },
@@ -36,7 +36,7 @@ export const productCategories = [
         pricePerTon: 420,
         moq: "1000 KG",
         images: ["APEDA", "FSSAI"],
-        images: ["https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://www.srisritattva.com/cdn/shop/articles/top-view-raw-rice-inside-plate-dark-desk.jpg?v=1707287123"],
         category: "rice"
       }
     ]
@@ -52,7 +52,7 @@ export const productCategories = [
         purity: "99.5% min",
         pricePerTon: 2850,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4199093/pexels-photo-4199093.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://5.imimg.com/data5/SELLER/Default/2022/8/RV/RS/BV/144603420/cumin-seeds-26-500x500.jpg"],
         certifications: ["Spices Board India", "FSSAI", "EU Compliant", "ASTA Clean", "Halal"],
         category: "spices"
       },
@@ -63,7 +63,7 @@ export const productCategories = [
         curcumin: "4%+",
         pricePerTon: 1450,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4199098/pexels-photo-4199098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://tiimg.tistatic.com/fp/1/008/130/bitter-high-curcumin-yellow-dried-raw-turmeric-fingers-kacchi-haldi--899.jpg"],
         certifications: ["Spices Board", "FSSAI", "USDA Organic Available"],
         category: "spices"
       },
@@ -73,7 +73,7 @@ export const productCategories = [
         description: "High pungency, bright red color.",
         pricePerTon: 2200,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4198762/pexels-photo-4198762.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://dhanipurespices.com/wp-content/uploads/2022/10/Red-Chilli-Powder-and-Whole.jpeg"],
         certifications: ["Spices Board", "FSSAI"],
         category: "spices"
       }
@@ -89,7 +89,7 @@ export const productCategories = [
         description: "Bold size, machine cleaned, Australian & MP origin.",
         pricePerTon: 980,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/264905/pexels-photo-264905.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://gonefarmers.com/cdn/shop/products/image_6ea94ae8-8b1a-457e-a116-9ac4a175eaec_2048x.jpg?v=1602329770"],
         certifications: ["APEDA", "FSSAI"],
         category: "pulses"
       },
@@ -99,7 +99,7 @@ export const productCategories = [
         description: "Myanmar & African origin, premium quality.",
         pricePerTon: 1150,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/264907/pexels-photo-264907.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://www.healthyorganic.in/cdn/shop/products/organic-toor-dal-500x500_837491a8-755b-4548-b082-42c110c406aa_grande.jpg?v=1552055341"],
         certifications: ["APEDA", "FSSAI"],
         category: "pulses"
       }
@@ -115,7 +115,7 @@ export const productCategories = [
         description: "99.98% purity, export quality.",
         pricePerTon: 1950,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4199095/pexels-photo-4199095.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://m.media-amazon.com/images/I/61l2fI4cEzL._AC_UF1000,1000_QL80_.jpg"],
         certifications: ["APEDA", "FSSAI", "USDA Organic"],
         category: "oilseeds"
       },
@@ -125,7 +125,7 @@ export const productCategories = [
         description: "40/50, 50/60 count, aflatoxin tested.",
         pricePerTon: 1350,
         moq: "1000 KG",
-        images: ["https://images.pexels.com/photos/4199091/pexels-photo-4199091.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"],
+        images: ["https://tiimg.tistatic.com/fp/1/008/550/tj-indian-peanut-groundnut-kernels-480.jpg"],
         certifications: ["APEDA", "Aflatoxin Free"],
         category: "oilseeds"
       }
