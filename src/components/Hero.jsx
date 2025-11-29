@@ -1,242 +1,173 @@
-// src/components/Hero.jsx
+// src/components/Hero.jsx - Professional Agriculture Corporate Version
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../config/LanguageContext';
-import { Leaf, Wheat, ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { Globe, ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+
+const backgrounds = [
+  "https://images.unsplash.com/photo-1592982537506-7f2f8e5b5e8f?w=1920&q=90",
+  "https://images.unsplash.com/photo-1501436513145-30f24e19fcc8?w=1920&q=90",
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=90",
+  "https://images.unsplash.com/photo-1560493676-04071c5f4678?w=1920&q=90",
+  "https://images.unsplash.com/photo-1589924691995-400dc9ecc0af?w=1920&q=90",
+  "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&q=90",
+];
 
 const Hero = () => {
   const { t } = useLanguage();
-  const [isMobile, setIsMobile] = useState(false);
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Safe client-only detection
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      setIsMobile(width < 768);
-      setWindowSize({ width, height });
-    };
-
-    handleResize(); // Initial
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % backgrounds.length);
+    }, 8000); // Slower, more premium feel
+    return () => clearInterval(interval);
   }, []);
 
-  // Mouse parallax (desktop only)
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const smoothY = useSpring(mouseY, { stiffness: 300, damping: 30 });
-  const parallaxX = useTransform(smoothX, [-300, 300], [-40, 40]);
-  const parallaxY = useTransform(smoothY, [-300, 300], [-30, 30]);
-
-  useEffect(() => {
-    if (isMobile) return;
-
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      mouseX.set(e.clientX - innerWidth / 2);
-      mouseY.set(e.clientY - innerHeight / 2);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [isMobile, mouseX, mouseY]);
-
   return (
-    <section className="relative h-screen min-h-[700px] overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
+    <section className="relative h-screen min-h-[750px] overflow-hidden mt-20">
 
-      {/* Golden Border Reveal */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ clipPath: "inset(100% round 16px)" }}
-        animate={{ clipPath: "inset(0% round 16px)" }}
-        transition={{ duration: 1.8, ease: "easeOut" }}
-      >
-        <div className="absolute inset-0 border-8 border-amber-400/20 rounded-3xl m-4 md:m-8" />
-        <div className="absolute inset-0 border-4 border-amber-400/40 rounded-3xl m-8 md:m-12" />
-      </motion.div>
-
-      {/* Parallax Grain Field - Desktop Only */}
-      {!isMobile && (
-        <motion.div
-          style={{ x: parallaxX, y: parallaxY }}
-          className="absolute inset-0 opacity-25 pointer-events-none"
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 via-transparent to-transparent" />
-          {[...Array(45)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute bottom-0 w-1.5 bg-gradient-to-t from-amber-300 via-yellow-400 to-green-300 rounded-t-full"
-              style={{
-                height: `${100 + Math.random() * 140}px`,
-                left: `${(i / 45) * 100}%`,
-                transform: `translateX(-50%) rotate(${Math.random() * 30 - 15}deg)`,
-              }}
-              animate={{ y: [0, -50, 0] }}
-              transition={{
-                duration: 12 + Math.random() * 8,
-                repeat: Infinity,
-                delay: Math.random() * 4,
-              }}
-            />
-          ))}
-        </motion.div>
-      )}
-
-      {/* Floating Wheat Icons */}
-      {[...Array(isMobile ? 6 : 12)].map((_, i) => (
-        <motion.div
-          key={`wheat-${i}`}
-          className="absolute text-amber-300 opacity-50 pointer-events-none"
-          initial={{ y: -150 }}
-          animate={{ 
-            y: windowSize.height ? windowSize.height + 150 : 1000,
-            rotate: 360 
-          }}
-          transition={{
-            duration: 18 + i * 2.5,
-            repeat: Infinity,
-            ease: "linear",
-            delay: i * 1.3,
-          }}
-          style={{
-            left: `${8 + (i * (isMobile ? 15 : 8))}%`,
-            top: "-10%",
-          }}
-        >
-          <Wheat className={`${isMobile ? 'w-10 h-10' : 'w-16 h-16'} drop-shadow-2xl`} />
-        </motion.div>
-      ))}
-
-      {/* Main Content */}
-      <div className="relative h-full flex items-center justify-center px-6">
-        <div className="max-w-7xl mx-auto text-center z-10">
-
+      {/* Background Carousel - Subtle Parallax Effect */}
+      <div className="absolute inset-0">
+        <AnimatePresence initial={false} mode="wait">
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          >
-            <h1 className="text-7xl md:text-9xl lg:text-[11rem] font-black tracking-tighter leading-none">
-              <span className="inline-block bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200 bg-clip-text text-transparent drop-shadow-2xl">
-                LPI
-              </span>
-              <span className="inline-block text-white ml-6 md:ml-12">
-                AGRI
-              </span>
-            </h1>
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${backgrounds[currentIndex]})`,
+            }}
+          />
+        </AnimatePresence>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="text-lg md:text-2xl lg:text-3xl text-amber-200 font-bold tracking-widest mt-4 uppercase"
-            >
-              Global Harvest Excellence
-            </motion.p>
-          </motion.div>
+        {/* Professional Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
 
-          {/* Hero Text */}
+        {/* Subtle Texture (optional, remove if too much) */}
+        <div 
+          className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E")`
+          }}
+        />
+      </div>
+
+      {/* Hero Content - Clean & Authoritative */}
+      <div className="relative h-full flex items-center justify-center px-6">
+        <div className="max-w-7xl mx-auto text-center">
+
+          {/* Logo & Tagline */}
           <motion.div
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="mt-12 md:mt-16"
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="mb-8"
           >
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {t('exportingTrust') || "Exporting India's Golden Harvest"}
-            </h2>
-            <p className="text-lg md:text-2xl lg:text-3xl text-green-100 mt-6 font-medium max-w-5xl mx-auto">
-              Premium Basmati • Spices • Pulses • Oilseeds • Grains
+            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white">
+              LPI <span className="text-green-700">AGRI</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 font-medium tracking-widest mt-4 uppercase">
+              Global Harvest Excellence Since 1998
             </p>
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ y: 60, opacity: 0 }}
+          {/* Main Headline */}
+          <motion.h2
+            initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16 md:mt-24"
+            transition={{ delay: 0.4, duration: 1.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-5xl mx-auto"
+          >
+            {t('exportingTrust') || "Exporting India's Finest Agricultural Produce"}
+          </motion.h2>
+
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 1 }}
+            className="text-xl md:text-2xl text-gray-200 font-light mt-8 max-w-4xl mx-auto leading-relaxed"
+          >
+            Premium Basmati Rice • Spices • Pulses • Oilseeds • Grains
+          </motion.p>
+
+          {/* CTA Buttons - Professional Green */}
+          <motion.div
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1.3, duration: 1 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16"
           >
             <Link
               to="/products"
-              className="group relative px-12 md:px-16 py-7 md:py-9 bg-gradient-to-r from-amber-500 to-yellow-500 text-green-900 rounded-full text-2xl md:text-3xl font-black uppercase tracking-wider shadow-3xl overflow-hidden w-full sm:w-auto text-center hover:scale-105 transition-all duration-300"
+              className="group px-10 py-5 bg-green-700 text-white rounded-xl text-xl font-semibold uppercase tracking-wider shadow-xl hover:bg-green-800 hover:shadow-2xl transition-all duration-300 flex items-center gap-4"
             >
-              <span className="relative z-10 flex items-center justify-center gap-5">
-                <Leaf className="w-9 h-9 md:w-11 h-11 group-hover:rotate-12 transition" />
-                Explore Products
-                <ArrowRight className="w-8 h-8 md:w-10 h-10 group-hover:translate-x-4 transition" />
-              </span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/60 to-white/0"
-                animate={{ x: [-150, 150] }}
-                transition={{ duration: 3.5, repeat: Infinity }}
-              />
+              Explore Our Products
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </Link>
 
             <Link
               to="/contact"
-              className="px-12 md:px-16 py-7 md:py-9 border-4 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-green-900 rounded-full text-2xl md:text-3xl font-bold uppercase tracking-wider transition-all duration-500 shadow-3xl w-full sm:w-auto text-center hover:scale-105"
+              className="px-10 py-5 border-2 border-white/80 text-white rounded-xl text-xl font-semibold uppercase tracking-wider backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
             >
-              Get Quote Now
+              Request a Quote
             </Link>
           </motion.div>
 
-          {/* Trust Badges */}
+          {/* Trust Indicators - Clean & Minimal */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap justify-center gap-5 mt-20 md:mt-28 px-6"
+            transition={{ delay: 1.7, duration: 1 }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:flex justify-center gap-6 mt-20 flex-wrap"
           >
             {[
               "APEDA Registered",
               "FSSAI Certified",
               "ISO 9001:2015",
-              "20+ Countries Served",
-              "100% Traceable",
-              "Farm-to-Fork Quality"
-            ].map((badge, i) => (
+              "Exporting to 25+ Countries",
+              "100% Traceable Supply Chain"
+            ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-lg px-6 py-4 rounded-full border border-amber-400/40 shadow-2xl"
+                className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-lg"
               >
-                <CheckCircle className="w-7 h-7 text-amber-300" />
-                <span className="font-bold text-amber-100 text-sm md:text-lg whitespace-nowrap">{badge}</span>
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <span className="text-white font-medium text-sm md:text-base">{item}</span>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {!isMobile && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ChevronDown className="w-12 h-12 text-amber-300" />
-          </motion.div>
-        </motion.div>
-      )}
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ delay: 2.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <ChevronDown className="w-8 h-8 text-white animate-bounce" />
+      </motion.div>
 
-      {/* Mouse Glow Effect - Desktop Only */}
-      {!isMobile && windowSize.width > 0 && (
-        <motion.div
-          className="pointer-events-none fixed inset-0 z-10"
-          style={{
-            background: `radial-gradient(700px at ${mouseX.get() + windowSize.width / 2}px ${mouseY.get() + windowSize.height / 2}px, rgba(120, 219, 120, 0.18), transparent 80%)`,
-          }}
-        />
-      )}
+      {/* Carousel Dots - Minimal */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+        {backgrounds.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentIndex(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === currentIndex
+                ? 'bg-green-500 w-8'
+                : 'bg-white/50 hover:bg-white/80'
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 };

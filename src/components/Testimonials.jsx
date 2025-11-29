@@ -1,8 +1,9 @@
-// src/components/Testimonials.jsx
+// src/components/Testimonials.jsx - Professional Corporate Version
 import React from 'react';
 import { useLanguage } from '../config/LanguageContext.jsx';
-import { Star, Quote, Globe, Package, CheckCircle, Wheat, Sparkles, ArrowRight } from 'lucide-react';
+import { Star, Quote, Globe, Package, CheckCircle, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Testimonials = () => {
   const { t } = useLanguage();
@@ -10,61 +11,67 @@ const Testimonials = () => {
   const testimonials = [
     {
       name: "Ahmed Al-Mansoori",
-      position: "CEO, Golden Grains Trading LLC",
-      company: "Dubai, UAE",
+      position: "CEO",
+      company: "Golden Grains Trading LLC",
+      location: "Dubai, UAE",
       flag: "AE",
       rating: 5,
-      text: "LPI Agri is our trusted partner for Basmati Rice since 2021. Their 1121 Steam Basmati is the best in the market — perfect cooking result, amazing aroma, and consistent quality in every container. Delivery always on time!",
-      product: "1121 Basmati Rice (40ft containers)",
-      volume: "1200+ MT per year",
+      text: "LPI Agri has been our trusted partner for Basmati rice since 2021. Their 1121 Steam variety consistently delivers exceptional quality, aroma, and cooking results. On-time delivery every single time.",
+      product: "1121 Basmati Rice",
+      volume: "1,200+ MT per year",
     },
     {
-      name: "Maria Ivanovna Petrova",
+      name: "Maria Petrova",
       position: "Import Director",
-      company: "RusAgro Import, Moscow",
+      company: "RusAgro Import",
+      location: "Moscow, Russia",
       flag: "RU",
       rating: 5,
-      text: "Excellent Cumin Seeds and Red Chilli Powder! We passed all European quality tests with zero rejection. LPI team provides full documents: COA, Phytosanitary, Fumigation. Very professional and reliable supplier.",
-      product: "Spices (Cumin, Chilli, Turmeric)",
+      text: "Excellent spices with full documentation support. All shipments passed EU quality tests with zero rejections. Professional team, reliable supply — highly recommended for serious importers.",
+      product: "Cumin Seeds & Red Chilli",
       volume: "800+ MT annually",
     },
     {
       name: "Fatima Zahra Benali",
       position: "Procurement Head",
       company: "Maroc Distribution S.A.",
+      location: "Casablanca, Morocco",
       flag: "MA",
       rating: 5,
-      text: "We import Chana Dal and Sesame Seeds from LPI Agri. The quality is outstanding and pricing is very competitive. They even helped us with Arabic labeling and Halal certification. Highly recommended!",
+      text: "Outstanding quality Chana Dal and Sesame Seeds. Competitive pricing and full support with Arabic labeling and Halal certification. A true partner in growth.",
       product: "Pulses & Oil Seeds",
-      volume: "1500 MT/year",
+      volume: "1,500 MT/year",
     },
     {
       name: "John Mutuku",
       position: "Managing Director",
       company: "Nairobi Grain Masters Ltd",
+      location: "Nairobi, Kenya",
       flag: "KE",
       rating: 5,
-      text: "Best supplier for IR64 Parboiled Rice in East Africa! 25kg PP bags with our branding, perfect moisture level, and fast loading at Mundra Port. We receive containers every 15 days without delay.",
+      text: "Best supplier for IR64 Parboiled Rice in East Africa. Private labeling, consistent quality, and containers arriving every 15 days without delay. True reliability.",
       product: "IR64 Parboiled Rice",
-      volume: "3000+ MT per year",
+      volume: "3,000+ MT per year",
     },
     {
       name: "Li Wei Chen",
       position: "Senior Buyer",
       company: "Shanghai Global Foods Co Ltd",
+      location: "Shanghai, China",
       flag: "CN",
       rating: 5,
-      text: "我们从LPI Agri进口有机芝麻和蓖麻籽。产品质量稳定，证书齐全，交货准时。团队沟通非常专业，下次还会继续合作！(We import organic sesame & castor seeds. Excellent quality, fast delivery, great team!)",
+      text: "Stable quality organic sesame and castor seeds. Full certificates, professional communication, and on-time delivery. We look forward to long-term cooperation.",
       product: "Organic Sesame & Castor Seeds",
       volume: "600 MT/year",
     },
     {
       name: "Rajesh Kumar Sharma",
       position: "Owner",
-      company: "Sharma Exports, Singapore",
+      company: "Sharma Exports",
+      location: "Singapore",
       flag: "SG",
       rating: 5,
-      text: "As an NRI, I trust only LPI Agri for my Sona Masoori and Ponni Rice business in Southeast Asia. Their private labeling service and door-to-door logistics make everything so easy.",
+      text: "As an NRI, I only trust LPI Agri for Sona Masoori and Ponni rice. Their private labeling and door-to-door logistics make expansion seamless.",
       product: "South Indian Rice + Private Label",
       volume: "900 MT/year",
     }
@@ -75,67 +82,48 @@ const Testimonials = () => {
     show: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
-  const card = {
-    hidden: { y: 100, opacity: 0 },
+  const item = {
+    hidden: { y: 60, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
   return (
-    <section className="py-32 bg-gradient-to-b from-amber-50 via-white to-green-50 relative overflow-hidden">
-      {/* Animated Golden Wheat Field */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bottom-0 w-2 bg-gradient-to-t from-amber-400 to-yellow-300 rounded-t-full"
-            style={{
-              height: `${120 + Math.random() * 180}px`,
-              left: `${(i / 50) * 100}%`,
-              transform: `translateX(-50%) rotate(${Math.random() * 30 - 15}deg)`,
-            }}
-            animate={{ y: [0, -60, 0] }}
-            transition={{
-              duration: 10 + Math.random() * 8,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
-      </div>
+    <section className="py-32 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-
-        {/* Epic Header */}
+        {/* Header */}
         <motion.div
-          initial={{ y: 80, opacity: 0 }}
+          initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          transition={{ duration: 1 }}
+          className="text-center mb-20"
         >
-          <h2 className="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 via-green-700 to-lime-700 mb-6">
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
             Trusted by Importers Worldwide
           </h2>
-          <p className="text-2xl md:text-3xl text-gray-700 font-medium max-w-5xl mx-auto leading-relaxed">
-            Join 200+ satisfied buyers from 25+ countries who choose LPI Agri for unmatched quality and reliability
+          <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto">
+            200+ businesses in 25+ countries rely on LPI Agri for consistent quality and reliable supply
           </p>
 
-          <div className="flex flex-wrap justify-center gap-12 mt-12 text-emerald-700 font-bold text-xl">
-            <motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-4">
-              <Globe className="w-12 h-12 text-amber-500" />
-              <span>25+ Countries</span>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-4">
-              <Package className="w-12 h-12 text-amber-500" />
-              <span>15,000+ MT Exported</span>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.1 }} className="flex items-center gap-4">
-              <CheckCircle className="w-12 h-12 text-amber-500" />
-              <span>100% On-Time Delivery</span>
-            </motion.div>
+          {/* Trust Stats */}
+          <div className="flex flex-wrap justify-center gap-12 mt-16">
+            {[
+              { icon: Globe, text: "25+ Countries Served" },
+              { icon: Package, text: "15,000+ MT Exported" },
+              { icon: CheckCircle, text: "100% On-Time Delivery" }
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-green-700 text-white rounded-full mb-4">
+                  <stat.icon className="w-10 h-10" />
+                </div>
+                <p className="text-lg font-semibold text-gray-800">{stat.text}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
 
-        {/* Luxury Testimonial Cards */}
+        {/* Testimonial Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -146,78 +134,46 @@ const Testimonials = () => {
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
-              variants={card}
-              whileHover={{ y: -20, scale: 1.03 }}
-              className="group relative"
+              variants={item}
+              whileHover={{ y: -6 }}
+              className="bg-white rounded-2xl shadow-lg border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
-              {/* Golden Border Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-3xl blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+              <div className="p-8">
+                {/* Quote Icon */}
+                <Quote className="w-10 h-10 text-green-700 mb-6 opacity-20" />
 
-              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-transparent group-hover:border-amber-400 transition-all duration-500">
-                {/* Gradient Top Bar */}
-                <div className="h-3 bg-gradient-to-r from-emerald-600 via-green-600 to-lime-600" />
+                {/* Stars */}
+                <div className="flex gap-1 mb-5">
+                  {[...Array(t.rating)].map((_, s) => (
+                    <Star key={s} className="w-5 h-5 text-green-600 fill-current" />
+                  ))}
+                </div>
 
-                <div className="p-10">
-                  {/* Quote Icon */}
-                  <motion.div
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 8, repeat: Infinity }}
-                    className="absolute top-8 right-8 text-green-200 opacity-40"
-                  >
-                    <Quote className="w-16 h-16" />
-                  </motion.div>
+                {/* Testimonial Text */}
+                <p className="text-gray-700 text-base leading-relaxed italic mb-8">
+                  "{t.text}"
+                </p>
 
-                  {/* Stars */}
-                  <div className="flex mb-6">
-                    {[...Array(t.rating)].map((_, s) => (
-                      <motion.div
-                        key={s}
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        transition={{ delay: s * 0.1 }}
-                      >
-                        <Star className="w-8 h-8 text-yellow-500 fill-current drop-shadow-lg" />
-                      </motion.div>
-                    ))}
+                {/* Product Info */}
+                <div className="bg-green-50 rounded-xl p-5 border border-green-100 mb-8">
+                  <div className="flex items-center gap-3 text-green-800 font-semibold">
+                    <Package className="w-5 h-5" />
+                    <span>{t.product}</span>
                   </div>
-
-                  {/* Testimonial */}
-                  <p className="text-gray-700 text-lg leading-relaxed italic mb-8 font-medium">
-                    "{t.text}"
+                  <p className="text-green-700 font-bold mt-2">
+                    Volume: <span className="text-lg">{t.volume}</span>
                   </p>
+                </div>
 
-                  {/* Product Info */}
-                  <div className="bg-gradient-to-r from-amber-50 to-green-50 rounded-2xl p-6 border-2 border-amber-200 mb-8">
-                    <div className="flex items-center gap-3 text-emerald-800 font-bold">
-                      <Package className="w-7 h-7 text-amber-600" />
-                      <span className="text-lg">{t.product}</span>
-                    </div>
-                    <p className="text-emerald-700 font-bold mt-2 text-sm">
-                      Volume: <span className="text-xl">{t.volume}</span>
-                    </p>
+                {/* Client Info */}
+                <div className="flex items-center gap-5">
+                  <div className="w-16 h-16 bg-green-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                    {t.flag}
                   </div>
-
-                  {/* Client */}
-                  <div className="flex items-center gap-5">
-                    <div className="relative">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 p-1">
-                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center text-4xl font-bold text-emerald-700 shadow-inner">
-                          {t.flag}
-                        </div>
-                      </div>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        className="absolute -top-2 -right-2 text-amber-500"
-                      >
-                        <Sparkles className="w-8 h-8" />
-                      </motion.div>
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black text-gray-800">{t.name}</h4>
-                      <p className="text-emerald-700 font-bold">{t.position}</p>
-                      <p className="text-sm text-gray-600">{t.company}</p>
-                    </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-lg">{t.name}</h4>
+                    <p className="text-green-700 font-medium">{t.position}</p>
+                    <p className="text-sm text-gray-500">{t.company} • {t.location}</p>
                   </div>
                 </div>
               </div>
@@ -225,49 +181,39 @@ const Testimonials = () => {
           ))}
         </motion.div>
 
-        {/* Final Trust CTA */}
+        {/* Final CTA */}
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="mt-32 relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-800 via-green-700 to-lime-800 p-20 text-center shadow-3xl"
+          className="mt-32 bg-green-700 rounded-3xl p-16 text-center text-white shadow-2xl"
         >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-40 -right-40 text-amber-400 opacity-10"
-          >
-            <Wheat className="w-96 h-96" />
-          </motion.div>
-
-          <h3 className="text-5xl md:text-7xl font-black text-white mb-8 relative z-10">
+          <h3 className="text-4xl md:text-6xl font-bold mb-6">
             Ready to Become Our Next Success Story?
           </h3>
-          <p className="text-2xl md:text-3xl text-amber-100 mb-12 max-w-4xl mx-auto font-medium relative z-10">
-            Join hundreds of happy importers who trust LPI Agri for their business growth
+          <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-4xl mx-auto font-light">
+            Join hundreds of importers who trust LPI Agri for quality, reliability, and growth
           </p>
 
-          <motion.a
-            href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20saw%20your%20amazing%20testimonials%20and%20want%20to%20start%20importing"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-6 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-16 py-8 rounded-full text-3xl font-black uppercase tracking-wider shadow-2xl overflow-hidden"
-          >
-            <Globe className="w-10 h-10 group-hover:rotate-12 transition" />
-            <span className="relative z-10">Start Importing Today</span>
-            <ArrowRight className="w-10 h-10 group-hover:translate-x-4 transition" />
-            <motion.div
-              className="absolute inset-0 bg-white"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.8 }}
-            />
-          </motion.a>
+          <div className="flex flex-col sm:flex-row gap-8 justify-center">
+            <a
+              href="https://wa.me/917505266931?text=Hi%20LPI%20Agri!%20I%20saw%20your%20testimonials%20and%20want%20to%20discuss%20importing%20from%20India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-4 bg-white text-green-700 px-12 py-6 rounded-xl text-xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-lg"
+            >
+              Start Importing Today
+              <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition-transform" />
+            </a>
+
+            <Link
+              to="/products"
+              className="px-12 py-6 border-4 border-white text-white rounded-xl text-xl font-bold uppercase tracking-wider hover:bg-white/10 transition-all"
+            >
+              View All Products
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

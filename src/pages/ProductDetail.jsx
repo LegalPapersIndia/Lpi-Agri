@@ -1,13 +1,12 @@
-// src/pages/ProductDetail.jsx
+// src/pages/ProductDetail.jsx - Professional Corporate Version
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useLanguage } from '../config/LanguageContext';
 import { motion } from 'framer-motion';
 import { productCategories } from '../data/products';
 import { 
-  ArrowLeft, CheckCircle2, Package, Truck, Shield, 
-  Globe, Wheat, Zap, PhoneCall, MessageCircle, 
-  Award, Sparkles, IndianRupee, ArrowRight 
+  ArrowLeft, CheckCircle2, Package, Truck, Shield, Globe, 
+  Award, PhoneCall, MessageCircle, ArrowRight, MapPin 
 } from 'lucide-react';
 
 const ProductDetail = () => {
@@ -20,12 +19,12 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <Wheat className="w-32 h-32 mx-auto text-amber-300 mb-8" />
-          <h1 className="text-6xl font-black text-gray-800">Product Not Found</h1>
-          <Link to="/products" className="mt-8 inline-block text-2xl text-green-700 hover:text-green-900">
-            Back to Products
+          <Package className="w-24 h-24 mx-auto text-green-700 mb-8" />
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">Product Not Found</h1>
+          <Link to="/products" className="text-xl text-green-700 hover:text-green-800 font-semibold">
+            ← Back to Products
           </Link>
         </div>
       </div>
@@ -33,126 +32,122 @@ const ProductDetail = () => {
   }
 
   const specs = [
-    { label: "Grain Length", value: product.length },
+    { label: "Average Length", value: product.avgLength || product.length },
+    { label: "Moisture", value: product.moisture || "13% max" },
+    { label: "Broken Ratio", value: product.broken || "2% max" },
     { label: "Purity", value: product.purity },
-    { label: "Moisture", value: product.moisture },
-    { label: "Broken Ratio", value: product.brokenRatio },
-    { label: "Sortex", value: product.sortex ? "100% Cleaned" : "Standard" },
-    { label: "Packaging", value: product.packaging || "50 KG PP Bags" },
+    { label: "Curcumin", value: product.curcumin },
+    { label: "Counts", value: product.counts },
+    { label: "Origin", value: product.origin },
+    { label: "Packing", value: product.packing || "25/50 KG PP Bags • Private Label Available" },
   ].filter(spec => spec.value);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-green-50">
+    <div className="min-h-screen bg-gray-50">
 
       {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-6 pt-10">
+      <div className="max-w-7xl mx-auto px-6 pt-12">
         <Link 
           to="/products" 
-          className="inline-flex items-center gap-4 text-green-800 hover:text-emerald-900 font-bold text-xl group"
+          className="inline-flex items-center gap-3 text-green-700 hover:text-green-800 font-semibold text-lg group"
         >
-          <ArrowLeft className="w-8 h-8 group-hover:-translate-x-2 transition" />
+          <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 transition" />
           Back to All Products
         </Link>
       </div>
 
       {/* Main Content */}
-      <section className="py-16">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
 
             {/* Image Gallery */}
             <motion.div
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              className="space-y-8"
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-6"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-3xl group">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white">
                 <img
-                  src={product.images[selectedImage]}
+                  src={product.images[selectedImage] || product.images[0]}
                   alt={product.name}
-                  className="w-full h-96 md:h-[600px] object-cover group-hover:scale-105 transition-transform duration-1000"
+                  className="w-full h-96 md:h-[600px] object-cover"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
-                <div className="absolute bottom-8 left-8 text-white">
-                  <h1 className="text-5xl md:text-7xl font-black drop-shadow-2xl">
-                    {product.name}
-                  </h1>
-                  <p className="text-2xl font-bold mt-2 opacity-90">
-                    Premium Indian {t(categoryId) || category.name}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8 text-white">
+                  <h1 className="text-4xl md:text-6xl font-bold">{product.name}</h1>
+                  {product.subtitle && (
+                    <p className="text-xl md:text-2xl mt-2 opacity-90">{product.subtitle}</p>
+                  )}
+                </div>
+              </div>
+
+              {product.images.length > 1 && (
+                <div className="grid grid-cols-4 gap-4">
+                  {product.images.map((img, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ scale: 1.05 }}
+                      onClick={() => setSelectedImage(i)}
+                      className={`rounded-2xl overflow-hidden cursor-pointer border-4 transition-all ${
+                        selectedImage === i ? 'border-green-700 shadow-lg' : 'border-gray-200'
+                      }`}
+                    >
+                      <img src={img} alt="" className="w-full h-28 object-cover" loading="lazy" />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+
+            {/* Product Information */}
+            <motion.div
+              initial={{ x: 60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-10"
+            >
+              {/* Price Card */}
+              <div className="bg-green-700 text-white rounded-3xl p-10 shadow-xl">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <p className="text-xl opacity-90">Export Price (FOB India)</p>
+                    <p className="text-6xl md:text-7xl font-bold mt-4">
+                      ${product.pricePerTon.toLocaleString()}
+                    </p>
+                    <p className="text-xl mt-2 opacity-90">per Metric Ton</p>
+                  </div>
+                  <div className="bg-green-300 text-green-900 px-6 py-3 rounded-full font-bold text-lg">
+                    LIVE PRICE
+                  </div>
+                </div>
+                <div className="border-t border-white/30 pt-6">
+                  <p className="text-xl">
+                    <span className="font-bold">MOQ:</span> {product.moq}
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-4">
-                {product.images.map((img, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.1 }}
-                    onClick={() => setSelectedImage(i)}
-                    className={`rounded-2xl overflow-hidden cursor-pointer border-4 transition-all ${
-                      selectedImage === i ? 'border-amber-400 shadow-2xl' : 'border-transparent'
-                    }`}
-                  >
-                    <img src={img} alt="" className="w-full h-32 object-cover" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Product Info */}
-            <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              className="space-y-10"
-            >
-              {/* Price Card */}
-              <div className="bg-gradient-to-br from-emerald-600 to-green-800 text-white rounded-3xl p-10 shadow-3xl">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <p className="text-2xl font-bold opacity-90">Current Export Price</p>
-                    <div className="flex items-center gap-4 mt-4">
-                      <IndianRupee className="w-16 h-16" />
-                      <span className="text-6xl md:text-8xl font-black">
-                        ₹{product.pricePerTon.toLocaleString()}
-                      </span>
-                    </div>
-                    <p className="text-xl mt-2">per Metric Ton (FOB India)</p>
-                  </div>
-                  <div className="bg-amber-400 text-green-900 px-6 py-3 rounded-full font-black text-lg inline-flex items-center gap-2">
-                    <Zap className="w-6 h-6" />
-                    LIVE PRICE
-                  </div>
-                </div>
-
-                <div className="border-t border-white/30 pt-6">
-                  <div className="flex items-center justify-between text-xl">
-                    <span className="font-bold">Minimum Order</span>
-                    <span className="bg-white/20 px-6 py-3 rounded-full font-black">
-                      {product.moq}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               {/* Specifications */}
-              <div className="bg-white rounded-3xl shadow-2xl p-10">
-                <h3 className="text-4xl font-black text-emerald-800 mb-8 flex items-center gap-4">
-                  <Award className="w-12 h-12 text-amber-500" />
-                  Premium Specifications
+              <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 flex items-center gap-4">
+                  <Award className="w-12 h-12 text-green-700" />
+                  Product Specifications
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {specs.map((spec, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="flex items-center gap-4 bg-green-50 rounded-2xl p-6"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-start gap-4"
                     >
-                      <CheckCircle2 className="w-10 h-10 text-green-600 flex-shrink-0" />
+                      <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
                       <div>
-                        <p className="font-bold text-gray-700">{spec.label}</p>
-                        <p className="text-xl font-black text-emerald-700">{spec.value}</p>
+                        <p className="font-semibold text-gray-700">{spec.label}</p>
+                        <p className="text-xl font-bold text-green-700">{spec.value}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -160,66 +155,58 @@ const ProductDetail = () => {
               </div>
 
               {/* Certifications */}
-              <div className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-3xl p-10 shadow-2xl">
-                <h3 className="text-4xl font-black text-emerald-800 mb-8 flex items-center gap-4">
-                  <Shield className="w-12 h-12 text-green-600" />
+              <div className="bg-gray-50 rounded-3xl p-10 border border-gray-200">
+                <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-4">
+                  <Shield className="w-10 h-10 text-green-700" />
                   Certifications & Compliance
                 </h3>
                 <div className="flex flex-wrap gap-4">
                   {product.certifications.map((cert, i) => (
-                    <motion.span
+                    <span
                       key={i}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
-                      className="bg-gradient-to-r from-emerald-600 to-green-700 text-white px-6 py-4 rounded-full font-bold shadow-xl flex items-center gap-3"
+                      className="bg-green-700 text-white px-6 py-3 rounded-full font-semibold text-sm shadow-md"
                     >
-                      <CheckCircle2 className="w-6 h-6" />
                       {cert}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
-                <motion.a
-                  href={`https://wa.me/917505266931?text=Hello!%20I'm%20interested%20in%20${encodeURIComponent(product.name)}%20-%20Please%20send%20latest%20price%20and%20samples`}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                <a
+                  href={`https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20need%20a%20quote%20for%20${encodeURIComponent(product.name)}%20(${product.moq}%20minimum)`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative inline-flex items-center justify-center gap-6 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-12 py-10 rounded-full text-3xl font-black shadow-3xl overflow-hidden"
+                  className="group inline-flex items-center justify-center gap-4 bg-green-700 hover:bg-green-800 text-white px-10 py-6 rounded-xl text-xl font-bold uppercase tracking-wider transition-all shadow-xl"
                 >
-                  <MessageCircle className="w-12 h-12 group-hover:rotate-12 transition" />
-                  <span className="relative z-10">WhatsApp Quote</span>
-                  <motion.div className="absolute inset-0 bg-white" initial={{ x: "-100%" }} whileHover={{ x: "100%" }} transition={{ duration: 0.8 }} />
-                </motion.a>
+                  <MessageCircle className="w-8 h-8" />
+                  WhatsApp Quote
+                  <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition" />
+                </a>
 
-                <motion.a
+                <a
                   href="tel:+917505266931"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center justify-center gap-6 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-12 py-10 rounded-full text-3xl font-black shadow-3xl"
+                  className="inline-flex items-center justify-center gap-4 bg-white border-4 border-green-700 text-green-700 hover:bg-green-50 px-10 py-6 rounded-xl text-xl font-bold uppercase tracking-wider transition-all shadow-xl"
                 >
-                  <PhoneCall className="w-12 h-12" />
+                  <PhoneCall className="w-8 h-8" />
                   Call Now
-                </motion.a>
+                </a>
               </div>
 
-              {/* Trust Badges */}
-              <div className="flex justify-center gap-12 mt-12 text-green-700">
+              {/* Trust Indicators */}
+              <div className="flex justify-around pt-10 border-t border-gray-200">
                 <div className="text-center">
-                  <Globe className="w-16 h-16 mx-auto mb-3" />
-                  <p className="font-bold text-xl">50+ Countries</p>
+                  <Globe className="w-14 h-14 mx-auto mb-3 text-green-700" />
+                  <p className="font-bold text-lg">50+ Countries</p>
                 </div>
                 <div className="text-center">
-                  <Truck className="w-16 h-16 mx-auto mb-3" />
-                  <p className="font-bold text-xl">Door Delivery</p>
+                  <Truck className="w-14 h-14 mx-auto mb-3 text-green-700" />
+                  <p className="font-bold text-lg">Global Delivery</p>
                 </div>
                 <div className="text-center">
-                  <Sparkles className="w-16 h-16 mx-auto mb-3 text-amber-600" />
-                  <p className="font-bold text-xl">Premium Quality</p>
+                  <MapPin className="w-14 h-14 mx-auto mb-3 text-green-700" />
+                  <p className="font-bold text-lg">Mundra & Kandla</p>
                 </div>
               </div>
             </motion.div>
@@ -227,36 +214,24 @@ const ProductDetail = () => {
         </div>
       </section>
 
-      {/* FINAL CTA – NOW FIXED */}
-      <section className="py-20 bg-gradient-to-r from-emerald-900 via-green-800 to-lime-900 text-white">
-        <div className="max-w-5xl mx-auto text-center px-6">
-          <motion.h2
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            className="text-6xl md:text-8xl font-black mb-8"
-          >
+      {/* Final CTA */}
+      <section className="py-24 bg-green-700 text-white text-center">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">
             Ready to Import {product.name}?
-          </motion.h2>
-
-          {/* This was the broken part – now 100% fixed */}
-          <motion.a
-            href={`https://wa.me/917505266931?text=URGENT:%20Need%20quote%20for%20${encodeURIComponent(product.name)}`}
+          </h2>
+          <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-3xl mx-auto">
+            Join 200+ global importers who trust LPI Agri for premium quality and reliable supply
+          </p>
+          <a
+            href={`https://wa.me/917505266931?text=URGENT:%20Need%20quote%20for%20${encodeURIComponent(product.name)}%20-%20${product.moq}`}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-8 bg-gradient-to-r from-amber-400 to-yellow-500 text-green-900 px-20 py-10 rounded-full text-4xl font-black shadow-3xl overflow-hidden group"
+            className="group inline-flex items-center gap-6 bg-white text-green-700 px-16 py-8 rounded-xl text-2xl md:text-3xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-2xl"
           >
-            <Package className="w-12 h-12 group-hover:rotate-12 transition" />
-            <span className="relative z-10">GET INSTANT QUOTE</span>
-            <ArrowRight className="w-12 h-12 group-hover:translate-x-6 transition" />
-            <motion.div 
-              className="absolute inset-0 bg-white" 
-              initial={{ x: "-100%" }} 
-              whileHover={{ x: "100%" }} 
-              transition={{ duration: 0.8 }} 
-            />
-          </motion.a>
+            Get Instant Quote Now
+            <ArrowRight className="w-10 h-10 group-hover:translate-x-4 transition" />
+          </a>
         </div>
       </section>
     </div>

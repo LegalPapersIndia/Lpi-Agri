@@ -7,7 +7,6 @@ import Testimonials from '../components/Testimonials';
 import WhyUs from '../components/WhyUs';
 
 const Home = () => {
-  // Enable smooth scrolling
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     return () => {
@@ -16,13 +15,8 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="overflow-hidden">
-      {/* Full-screen Hero */}
-      <section id="hero" className="relative">
+    <>
         <Hero />
-      </section>
-
-      {/* Featured Products */}
       <section id="products" className="relative bg-gradient-to-b from-green-50 to-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <Products />
@@ -49,7 +43,7 @@ const Home = () => {
           <Testimonials />
         </div>
       </section>
-    </main>
+    </>
   );
 };
 

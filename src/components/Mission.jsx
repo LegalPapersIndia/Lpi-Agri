@@ -1,97 +1,147 @@
-// src/components/MissionVision.jsx
+// src/components/MissionVision.jsx - Professional Corporate Version
 import React from 'react';
 import { useLanguage } from '../config/LanguageContext.jsx';
-import { Leaf, Globe, HeartHandshake, Award } from 'lucide-react';
+import { HeartHandshake, Target, Leaf, Globe, Award, Sprout } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const Mission = () => {
+const MissionVision = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 lg:py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
+
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-800 mb-4">
-            {'Our Mission & Vision'}
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+            {t('ourMissionVision') || 'Our Mission & Vision'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
             Building a sustainable bridge between Indian farmers and global markets
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-12 xl:gap-16">
+
           {/* Mission Card */}
-          <div className="group bg-gradient-to-br from-green-50 to-green-100/50 rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 border border-green-200">
-            <div className="flex items-center gap-5 mb-8">
-              <div className="p-5 bg-green-600 rounded-2xl group-hover:scale-110 transition-transform">
-                <HeartHandshake className="w-12 h-12 text-white" />
+          <motion.div
+            initial={{ x: -60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-white rounded-3xl p-10 lg:p-12 shadow-lg border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
+          >
+            <div className="flex items-center gap-6 mb-8">
+              <div className="w-20 h-20 bg-green-700 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                <HeartHandshake className="w-12 h-12" />
               </div>
-              <h3 className="text-3xl font-bold text-green-800">
-                {'Our Mission'}
+              <h3 className="text-4xl font-bold text-gray-900">
+                {t('Our Mission') || 'Our Mission'}
               </h3>
             </div>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
-              To empower Indian farmers by providing direct access to international markets, ensuring fair prices for their premium produce while delivering the finest quality grains, spices, and agro-products to customers worldwide with complete transparency and trust.
+            <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-10">
+              To empower Indian farmers by providing direct access to international markets, ensuring fair compensation for their premium produce while delivering exceptional quality grains, spices, and agro-products to customers worldwide — with full transparency and trust.
             </p>
 
-            <ul className="mt-8 space-y-4">
+            <ul className="space-y-6">
               {[
                 "Connect farmers directly to global buyers",
                 "Ensure 100% traceability from farm to fork",
-                "Promote sustainable & organic farming",
-                "Deliver premium quality at competitive prices"
+                "Promote sustainable and ethical farming practices",
+                "Deliver premium1616 quality at competitive prices"
               ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <Leaf className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">{t(item) || item}</span>
-                </li>
+                <motion.li
+                  key={idx}
+                  initial={{ x: -30, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex items-start gap-4"
+                >
+                  <div className="mt-1 w-9 h-9 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Sprout className="w-5 h-5 text-green-700" />
+                  </div>
+                  <span className="text-lg text-gray-700 font-medium leading-relaxed">
+                    {item}
+                  </span>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Vision Card */}
-          <div className="group bg-gradient-to-bl from-yellow-50 to-amber-100/50 rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 border border-yellow-200">
-            <div className="flex items-center gap-5 mb-8">
-              <div className="p-5 bg-yellow-500 rounded-2xl group-hover:scale-110 transition-transform">
-                <Globe className="w-12 h-12 text-white" />
+          <motion.div
+            initial={{ x: 60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-white rounded-3xl p-10 lg:p-12 shadow-lg border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
+          >
+            <div className="flex items-center gap-6 mb-8">
+              <div className="w-20 h-20 bg-green-700 text-white rounded-2xl flex items-center justify-center shadow-lg">
+                <Target className="w-12 h-12" />
               </div>
-              <h3 className="text-3xl font-bold text-green-800">
-                {'Our Vision'}
+              <h3 className="text-4xl font-bold text-gray-900">
+                {t('Our Vision') || 'Our Vision'}
               </h3>
             </div>
 
-            <p className="text-lg text-gray-700 leading-relaxed">
-              To become the most trusted and preferred global partner for Indian agricultural exports by 2030 — leading the way in quality, sustainability, and farmer prosperity while proudly representing "Made in India" excellence across the world.
+            <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-10">
+              To become the most trusted and preferred global partner for Indian agricultural exports by 2030 — leading in quality, sustainability, and farmer prosperity while proudly representing “Made in India” excellence across the world.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6">
               {[
-                { icon: Award, label: "No.1 Indian Agri Exporter" },
+                { icon: Award, label: "Leading Indian Agri Exporter" },
                 { icon: Leaf, label: "100% Sustainable Supply Chain" },
-                { icon: Globe, label: "Present in 50+ Countries" },
-                { icon: HeartHandshake, label: "1 Million+ Farmers Empowered" }
+                { icon: Globe, label: "Presence in 50+ Countries" },
+                { icon: HeartHandshake, label: "Empowering 1M+ Farmers" }
               ].map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center text-center p-4 bg-white/70 rounded-2xl">
-                  <item.icon className="w-10 h-10 text-green-600 mb-2" />
-                  <span className="text-sm font-semibold text-gray-700">
-                    {t(item.label) || item.label}
+                <motion.div
+                  key={idx}
+                  initial={{ y: 30, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100 hover:border-green-200 transition-all duration-300"
+                >
+                  <item.icon className="w-12 h-12 text-green-700 mx-auto mb-3" />
+                  <span className="text-sm lg:text-base font-semibold text-gray-800 leading-tight">
+                    {item.label}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Bottom Accent */}
-        <div className="mt-16 text-center">
-          <p className="text-2xl font-bold text-green-700 italic">
-            "From India's Soil to the World's Table — With Trust & Pride"
-          </p>
-        </div>
+        {/* Closing Quote */}
+        <motion.div
+          initial={{ y: 60, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 1 }}
+          className="mt-24 text-center"
+        >
+          <blockquote className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-700 italic leading-tight max-w-5xl mx-auto px-8">
+            “From India’s Soil to the World’s Table — With Trust & Pride”
+          </blockquote>
+          <div className="flex justify-center gap-8 mt-8 text-green-700">
+            <Leaf className="w-10 h-10" />
+            <Sprout className="w-14 h-14" />
+            <Leaf className="w-10 h-10" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Mission;
+export default MissionVision;

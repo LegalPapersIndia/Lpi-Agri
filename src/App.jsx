@@ -19,16 +19,15 @@ import ProductDetail from './pages/ProductDetail';
 const AppContent = () => {
   const location = useLocation();
 
-  // Instant scroll to top on every route change (luxury feel)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-amber-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50">
       <Navbar />
       
-      <main className="flex-1">
+      <main className="main">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
