@@ -1,4 +1,4 @@
-// src/pages/Import.jsx - Professional Corporate Version
+// src/pages/Import.jsx - Professional Corporate Version with Images (Original Theme Preserved)
 import React from 'react';
 import { useLanguage } from '../config/LanguageContext';
 import { motion } from 'framer-motion';
@@ -11,14 +11,54 @@ const Import = () => {
   const { t } = useLanguage();
 
   const products = [
-    { name: "Australian Almonds", origin: "Australia", volume: "500+ MT/Month" },
-    { name: "California Walnuts", origin: "USA", volume: "300+ MT/Month" },
-    { name: "Afghan Dry Grapes", origin: "Afghanistan", volume: "800+ MT/Month" },
-    { name: "Iranian Pistachio", origin: "Iran", volume: "200+ MT/Month" },
-    { name: "Turkish Hazelnuts", origin: "Turkey", volume: "150+ MT/Month" },
-    { name: "Vietnamese Cashew W320", origin: "Vietnam", volume: "1000+ MT/Month" },
-    { name: "Indonesian Cloves & Nutmeg", origin: "Indonesia", volume: "400+ MT/Month" },
-    { name: "Brazilian Sugar ICUMSA 45", origin: "Brazil", volume: "5000+ MT/Month" },
+    { 
+      name: "Australian Almonds", 
+      origin: "Australia", 
+      volume: "500+ MT/Month",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY8GIiUzv-b9UL4BzY9Dbi2fgHxvtwdElaKQ&s"
+    },
+    { 
+      name: "California Walnuts", 
+      origin: "USA", 
+      volume: "300+ MT/Month",
+      image: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_500,h_392/https://californiawalnuts.in/wp-content/uploads/2018/03/CMYK-1.jpg"
+    },
+    { 
+      name: "Afghan Dry Grapes", 
+      origin: "Afghanistan", 
+      volume: "800+ MT/Month",
+      image: "https://d8kcpnmmec91a.cloudfront.net/products/rain/AfghanRaisins/26.%20Afghan%20Raisin-6.jpg"
+    },
+    { 
+      name: "Iranian Pistachio", 
+      origin: "Iran", 
+      volume: "200+ MT/Month",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQTjBe7RCcbzU8IAA3893a9R9XAlG_vsbUuA&s"
+    },
+    { 
+      name: "Turkish Hazelnuts", 
+      origin: "Turkey", 
+      volume: "150+ MT/Month",
+      image: "https://i.etsystatic.com/54102561/r/il/27d26e/6453322089/il_570xN.6453322089_r9ov.jpg"
+    },
+    { 
+      name: "Vietnamese Cashew W320", 
+      origin: "Vietnam", 
+      volume: "1000+ MT/Month",
+      image: "https://www.producereport.com/sites/default/files/field/image/cashew.jpg"
+    },
+    { 
+      name: "Indonesian Cloves & Nutmeg", 
+      origin: "Indonesia", 
+      volume: "400+ MT/Month",
+      image: "https://5.imimg.com/data5/ANDROID/Default/2020/10/EB/UW/LW/96337369/product-jpeg-500x500.jpg"
+    },
+    { 
+      name: "Brazilian Sugar ICUMSA 45", 
+      origin: "Brazil", 
+      volume: "5000+ MT/Month",
+      image: "https://api.globy.com/public/market/675ef77c3e327a19dd56ca82/photos/675ef77c3e327a19dd56caa3/675ef77c3e327a19dd56caa3_lg.webp"
+    },
   ];
 
   const benefits = [
@@ -90,7 +130,7 @@ const Import = () => {
         </div>
       </section>
 
-      {/* PRODUCTS GRID */}
+      {/* PRODUCTS GRID WITH IMAGES */}
       <section className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
@@ -118,9 +158,16 @@ const Import = () => {
                 whileHover={{ y: -8 }}
                 className="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200 hover:border-green-700 transition-all"
               >
-                <div className="h-48 bg-gray-200 border-2 border-dashed rounded-t-3xl flex items-center justify-center">
-                  <Package className="w-16 h-16 text-gray-400" />
+                {/* Product Image */}
+                <div className="h-48 bg-gray-200 relative overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
+
                 <div className="p-8 text-center">
                   <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{item.name}</h3>
                   <p className="text-green-700 font-semibold text-lg">{item.origin}</p>

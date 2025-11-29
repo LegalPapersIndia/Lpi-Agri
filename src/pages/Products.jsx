@@ -177,7 +177,7 @@ export default function Products() {
                     <div className="mt-6 flex items-end justify-between">
                       <div>
                         <p className="text-2xl md:text-3xl font-bold text-green-700">
-                          ${product.pricePerTon.toLocaleString()}
+                          ₹{product.pricePerTon.toLocaleString()}
                         </p>
                         <p className="text-sm text-gray-500">per MT • FOB India</p>
                       </div>
