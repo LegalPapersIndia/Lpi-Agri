@@ -6,12 +6,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const backgrounds = [
-  "https://images.unsplash.com/photo-1592982537506-7f2f8e5b5e8f?w=1920&q=90",
-  "https://images.unsplash.com/photo-1501436513145-30f24e19fcc8?w=1920&q=90",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=90",
-  "https://images.unsplash.com/photo-1560493676-04071c5f4678?w=1920&q=90",
-  "https://images.unsplash.com/photo-1589924691995-400dc9ecc0af?w=1920&q=90",
-  "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&q=90",
+  "https://www.azorobotics.com/images/Article_Images/ImageForArticle_751_17453071169997623.jpg",
+  "https://cdn.prod.website-files.com/66604a97df59732aab43fcc8/674882e878947fd98ea04607_post-23-small.webp",
+  "https://m.economictimes.com/thumb/height-450,width-600,imgsize-190056,msid-121692746/nano-urea-empowering-indian-agriculture.jpg",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBX2GkJBcYV7vAN7uiNWRwV-AM0Z7WSVHewA&s",
+  "https://upload.wikimedia.org/wikipedia/commons/8/86/PivotWithDrops.JPG",
+  "https://www.azocleantech.com/images/Article_Images/ImageForArticle_1633_16697334671071295.jpg",
 ];
 
 const Hero = () => {
@@ -151,7 +151,6 @@ const Hero = () => {
         transition={{ delay: 2.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
-        <ChevronDown className="w-8 h-8 text-white animate-bounce" />
       </motion.div>
 
       {/* Carousel Dots - Minimal */}
