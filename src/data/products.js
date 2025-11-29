@@ -28,6 +28,25 @@ export const productCategories = [
         category: "rice"
       },
       {
+        id: "Sugnadha",
+        name: "Mahi Sugnadha Basmati Rice",
+        subtitle: "World's Longest Grain • Premium Aroma",
+        description: "The finest 1121 Basmati rice with exceptional grain length and rich aroma. Available in Steam, Golden Sella, White Sella, and Raw varieties.",
+        varieties: ["Steam", "Golden Sella", "White Sella", "Raw/Creamy Sella"],
+        avgLength: "8.30+ mm",
+        moisture: "13% max",
+        broken: "2% max",
+        pricePerTon: 1350,
+        moq: "1,000 KG (1 MT)",
+        packing: "1kg, 5kg, 10kg, 20kg, 25kg, 40kg, 50kg • PP/Jute/Non-Woven • Private Label Available",
+        images: [
+          "https://images.jdmagicbox.com/quickquotes/images_main/mahi-sugandha-sella-basmati-rices-377584811-jpen0.jpg",
+        ],
+        certifications: ["APEDA", "FSSAI", "ISO 22000", "Halal", "USDA Organic", "EU Organic"],
+        origin: "Punjab & Haryana, India",
+        category: "rice"
+      },
+      {
         id: "pusa-basmati",
         name: "Pusa Basmati 1509 / 1401 / 1121",
         subtitle: "High-Yield Premium Basmati",
