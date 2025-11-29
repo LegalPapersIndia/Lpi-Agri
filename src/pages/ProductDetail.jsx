@@ -114,7 +114,7 @@ const ProductDetail = () => {
                   <div>
                     <p className="text-xl opacity-90">Export Price (FOB India)</p>
                     <p className="text-6xl md:text-7xl font-bold mt-4">
-                      ${product.pricePerTon.toLocaleString()}
+                      ₹{product.pricePerTon.toLocaleString()}
                     </p>
                     <p className="text-xl mt-2 opacity-90">per Metric Ton</p>
                   </div>
