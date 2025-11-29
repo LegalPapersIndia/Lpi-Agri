@@ -21,7 +21,7 @@ export const productCategories = [
         packing: "1kg, 5kg, 10kg, 20kg, 25kg, 40kg, 50kg • PP/Jute/Non-Woven • Private Label Available",
         images: [
           "https://www.mahavirricemill.com/uploads/product/1121%20Golden%20Sella%20Basmati%20Rice-min_16963308342614.jpg",
-          "https://5.imimg.com/data5/SELLER/Default/2023/8/336789456/KM/LO/XT/19462699/1121-steam-basmati-rice-1000x1000.jpg"
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS0xplDP6ibPPBnP9moeWf6k1N7dQBAIqHqw&s"
         ],
         certifications: ["APEDA", "FSSAI", "ISO 22000", "Halal", "USDA Organic", "EU Organic"],
         origin: "Punjab & Haryana, India",
@@ -55,7 +55,7 @@ export const productCategories = [
         packing: "25kg, 50kg PP bags • Private labeling",
         images: [
           "https://www.srisritattva.com/cdn/shop/articles/top-view-raw-rice-inside-plate-dark-desk.jpg?v=1707287123",
-          "https://www.tradeindia.com/images/product/500x500/112997735/ir64-parboiled-rice.jpg"
+          "https://5.imimg.com/data5/KM/BJ/MY-13701092/sona-masoori-rice.jpg"
         ],
         certifications: ["APEDA", "FSSAI"],
         origin: "Andhra Pradesh, Tamil Nadu, Karnataka",
