@@ -88,7 +88,7 @@ export default function About() {
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">Who We Are</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  <strong className="text-green-700">LPI Agri</strong> is a leading Indian agricultural export company founded in 2015, headquartered in Mumbai with direct operations from Gujarat and Punjab.
+                  <strong className="text-green-700">LPI Agri</strong> is a leading Indian agricultural export company founded in 2015, headquartered in Noida with direct operations from Gujarat and Punjab.
                 </p>
                 <p>
                   We work directly with over <strong className="text-green-700">1 million farmers</strong>, eliminating middlemen to ensure fair prices and complete traceability.

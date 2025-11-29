@@ -19,15 +19,16 @@ import ProductDetail from './pages/ProductDetail';
 const AppContent = () => {
   const location = useLocation();
 
+  // Smooth scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-green-50">
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
-      <main className="main">
+
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -36,14 +37,18 @@ const AppContent = () => {
           <Route path="/import" element={<Import />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetail />} />
-          
-          {/* Optional: 404 Page */}
+
+          {/* 404 Page - Professional */}
           <Route path="*" element={
-            <div className="h-screen flex items-center justify-center">
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
               <div className="text-center">
-                <h1 className="text-9xl font-black text-amber-400">404</h1>
-                <p className="text-3xl font-bold text-green-800 mt-6">Page Not Found</p>
-                <a href="/" className="mt-8 inline-block px-12 py-6 bg-gradient-to-r from-emerald-600 to-green-700 text-white rounded-full text-xl font-bold hover:scale-105 transition">
+                <h1 className="text-9xl font-black text-green-700">404</h1>
+                <p className="text-4xl font-bold text-gray-800 mt-6">Page Not Found</p>
+                <p className="text-xl text-gray-600 mt-4">The page you're looking for doesn't exist.</p>
+                <a 
+                  href="/" 
+                  className="mt-10 inline-flex items-center gap-4 bg-green-700 hover:bg-green-800 text-white px-10 py-5 rounded-xl text-xl font-bold uppercase tracking-wider transition-all shadow-xl"
+                >
                   Back to Home
                 </a>
               </div>
@@ -52,7 +57,6 @@ const AppContent = () => {
         </Routes>
       </main>
 
-      {/* Footer */}
       <Footer />
 
       {/* Floating WhatsApp Chatbot */}

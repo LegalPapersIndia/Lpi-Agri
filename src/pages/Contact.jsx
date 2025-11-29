@@ -91,7 +91,7 @@ export default function Contact() {
 
               <div className="space-y-10">
                 {[
-                  { icon: Building2, title: "Corporate Office", content: "LPI Agri Exports Pvt Ltd\nMumbai, Maharashtra\nIndia" },
+                  { icon: Building2, title: "Corporate Office", content: "LPI Agri Exports Pvt Ltd\n Noida , Maharashtra\nIndia" },
                   { icon: Phone, title: "Phone & WhatsApp", content: "+91 75052 66931\n24/7 Global Support" },
                   { icon: Mail, title: "Email", content: "export@lpiagri.com\ninfo@lpiagri.com" },
                   { icon: Clock, title: "Working Hours", content: "Monday–Saturday: 9:00 AM – 8:00 PM IST\nEmergency Support: 24/7" }
@@ -208,7 +208,7 @@ export default function Contact() {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="LPI Agri Office - Mumbai Region"
+              title="LPI Agri Office - Noida Region"
               className="w-full"
             />
           </div>
