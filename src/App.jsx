@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 
 // Components
 import Navbar from './components/Navbar';
@@ -21,14 +21,14 @@ const AppContent = () => {
 
   // Smooth scroll to top on route change
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
 
-      <main>
+      <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -38,37 +38,42 @@ const AppContent = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetail />} />
 
-          {/* 404 Page - Professional */}
-          <Route path="*" element={
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-              <div className="text-center">
-                <h1 className="text-9xl font-black text-green-700">404</h1>
-                <p className="text-4xl font-bold text-gray-800 mt-6">Page Not Found</p>
-                <p className="text-xl text-gray-600 mt-4">The page you're looking for doesn't exist.</p>
-                <a 
-                  href="/" 
-                  className="mt-10 inline-flex items-center gap-4 bg-green-700 hover:bg-green-800 text-white px-10 py-5 rounded-xl text-xl font-bold uppercase tracking-wider transition-all shadow-xl"
-                >
-                  Back to Home
-                </a>
+          {/* 404 */}
+          <Route
+            path="*"
+            element={
+              <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
+                <div className="text-center max-w-md">
+                  <h1 className="text-8xl sm:text-9xl font-black text-green-700">404</h1>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mt-6">
+                    Page Not Found
+                  </h2>
+                  <p className="text-lg text-gray-600 mt-4 mb-10">
+                    The page you are looking for doesn't exist or has been moved.
+                  </p>
+                  <Link
+                    to="/"
+                    className="inline-flex items-center gap-3 bg-green-700 hover:bg-green-800 text-white px-8 sm:px-10 py-4 rounded-xl text-lg font-bold transition-all shadow-lg"
+                  >
+                    ← Back to Home
+                  </Link>
+                </div>
               </div>
-            </div>
-          } />
+            }
+          />
         </Routes>
       </main>
 
       <Footer />
 
-      {/* Floating WhatsApp Chatbot */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Floating WhatsApp-style button */}
+      <div className="fixed bottom-5 sm:bottom-6 right-5 sm:right-6 z-50">
         <AgriChatbot />
       </div>
     </div>
   );
 };
 
-const App = () => {
-  return <AppContent />;
-};
+const App = () => <AppContent />;
 
 export default App;

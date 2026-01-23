@@ -1,6 +1,4 @@
-// src/data/products.js
-// Premium Indian Agricultural Exports - LPI Agri
-// Updated: Minimum 4 products in every category
+
 
 export const productCategories = [
   {

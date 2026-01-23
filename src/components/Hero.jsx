@@ -1,7 +1,7 @@
-// src/components/Hero.jsx - Professional Agriculture Corporate Version
+// src/components/Hero.jsx - Ultra-Premium Version
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../config/LanguageContext';
-import { Globe, ArrowRight, CheckCircle, ChevronDown } from 'lucide-react';
+import { ArrowRight, CheckCircle, MousePointer2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -21,152 +21,126 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % backgrounds.length);
-    }, 8000); // Slower, more premium feel
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[750px] overflow-hidden mt-20">
-
-      {/* Background Carousel - Subtle Parallax Effect */}
-      <div className="absolute inset-0">
-        <AnimatePresence initial={false} mode="wait">
+    <section className="relative h-[90vh] md:h-screen min-h-[700px] flex items-center overflow-hidden">
+      
+      {/* Background Layer with Ken Burns Effect */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
             className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url(${backgrounds[currentIndex]})`,
-            }}
+            style={{ backgroundImage: `url(${backgrounds[currentIndex]})` }}
           />
         </AnimatePresence>
-
-        {/* Professional Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-
-        {/* Subtle Texture (optional, remove if too much) */}
-        <div 
-          className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E")`
-          }}
-        />
+        
+        {/* Dynamic Multi-Stage Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-10" />
       </div>
 
-      {/* Hero Content - Clean & Authoritative */}
-      <div className="relative h-full flex items-center justify-center px-6">
-        <div className="max-w-7xl mx-auto text-center">
+      {/* Hero Content */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pt-20">
+        <div className="max-w-4xl">
+          
 
-          {/* Logo & Tagline */}
-          <motion.div
-            initial={{ y: 60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="mb-8"
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.9]"
           >
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white">
-              LPI <span className="text-green-700">AGRI</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-medium tracking-widest mt-4 uppercase">
-              Global Harvest Excellence Since 1998
-            </p>
-          </motion.div>
+            LPI <span className="text-green-500">AGRI</span>
+            <br />
+            <span className="text-3xl md:text-5xl lg:text-6xl font-bold opacity-90 mt-4 block">
+              {t('exportingTrust') || "India's Finest Harvest"}
+            </span>
+          </motion.h1>
 
-          {/* Main Headline */}
-          <motion.h2
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 1.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-5xl mx-auto"
-          >
-            {t('exportingTrust') || "Exporting India's Finest Agricultural Produce"}
-          </motion.h2>
-
-          {/* Subheadline */}
+          {/* Description */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 1 }}
-            className="text-xl md:text-2xl text-gray-200 font-light mt-8 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8 text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed font-medium"
           >
-            Premium Basmati Rice • Spices • Pulses • Oilseeds • Grains
+            Sourcing, processing, and exporting premium agricultural commodities to 25+ countries. From farm to global markets, we ensure 100% purity and traceability.
           </motion.p>
 
-          {/* CTA Buttons - Professional Green */}
+          {/* CTAs */}
           <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.3, duration: 1 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-10 flex flex-wrap gap-4"
           >
             <Link
               to="/products"
-              className="group px-10 py-5 bg-green-700 text-white rounded-xl text-xl font-semibold uppercase tracking-wider shadow-xl hover:bg-green-800 hover:shadow-2xl transition-all duration-300 flex items-center gap-4"
+              className="group relative px-8 py-4 bg-green-600 text-white rounded-2xl font-bold overflow-hidden transition-all hover:scale-105 active:scale-95"
             >
-              Explore Our Products
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
+              <span className="flex items-center gap-2">
+                Explore Products <ArrowRight className="w-5 h-5" />
+              </span>
             </Link>
-
+            
             <Link
               to="/contact"
-              className="px-10 py-5 border-2 border-white/80 text-white rounded-xl text-xl font-semibold uppercase tracking-wider backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white rounded-2xl font-bold transition-all hover:scale-105"
             >
               Request a Quote
             </Link>
           </motion.div>
 
-          {/* Trust Indicators - Clean & Minimal */}
+          {/* Trust Bar */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.7, duration: 1 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:flex justify-center gap-6 mt-20 flex-wrap"
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-16 flex flex-wrap gap-y-4 gap-x-8 border-t border-white/10 pt-8"
           >
             {[
               "APEDA Registered",
-              "FSSAI Certified",
               "ISO 9001:2015",
-              "Exporting to 25+ Countries",
-              "100% Traceable Supply Chain"
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-lg"
-              >
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span className="text-white font-medium text-sm md:text-base">{item}</span>
+              "FSSAI Certified",
+              "Global Traceability"
+            ].map((text, i) => (
+              <div key={i} className="flex items-center gap-2 group cursor-default">
+                <CheckCircle className="w-5 h-5 text-green-500 group-hover:scale-110 transition-transform" />
+                <span className="text-gray-300 text-sm font-bold uppercase tracking-tight">{text}</span>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-      </motion.div>
-
-      {/* Carousel Dots - Minimal */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      {/* Modern Navigation Controls */}
+      <div className="absolute bottom-10 right-6 md:right-12 z-30 flex flex-col gap-4">
         {backgrounds.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrentIndex(i)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              i === currentIndex
-                ? 'bg-green-500 w-8'
-                : 'bg-white/50 hover:bg-white/80'
-            }`}
-          />
+            className="group flex items-center gap-4 text-right"
+          >
+            <span className={`text-xs font-black transition-all duration-500 opacity-0 group-hover:opacity-100 ${currentIndex === i ? 'opacity-100 text-green-500' : 'text-white'}`}>
+              0{i + 1}
+            </span>
+            <div className={`h-1 transition-all duration-500 rounded-full ${currentIndex === i ? 'w-12 bg-green-500' : 'w-4 bg-white/30 group-hover:bg-white/60'}`} />
+          </button>
         ))}
       </div>
+
+      {/* Subtle Bottom Glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
     </section>
   );
 };

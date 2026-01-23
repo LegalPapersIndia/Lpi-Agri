@@ -1,8 +1,7 @@
-// src/components/Navbar.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../config/LanguageContext';
 import { Link, useLocation } from 'react-router-dom';
-import { Globe, ChevronDown, Menu, X, Check } from 'lucide-react';
+import { Globe, ChevronDown, Menu, X, Check, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -10,7 +9,26 @@ const Navbar = () => {
   const location = useLocation();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const mobileMenuRef = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const languages = [
     { code: 'en', name: 'English', flag: 'GB' },
@@ -33,218 +51,231 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Close menus on route change
-  useEffect(() => {
-    setIsLangOpen(false);
-    setIsMobileMenuOpen(false);
-  }, [location]);
+  // Animation variants
+  const sidebarVariants = {
+    closed: { x: '100%', transition: { type: 'spring', stiffness: 300, damping: 40 } },
+    opened: { x: 0, transition: { type: 'spring', stiffness: 300, damping: 40, staggerChildren: 0.07 } }
+  };
 
-  // Lock scroll when mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [isMobileMenuOpen]);
-
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-    if (isMobileMenuOpen) document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobileMenuOpen]);
+  const itemVariants = {
+    closed: { opacity: 0, x: 30 },
+    opened: { opacity: 1, x: 0 }
+  };
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 border-b border-gray-100"
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'py-3 sm:py-4 bg-white/90 backdrop-blur-xl border-b border-gray-200/60 shadow-sm'
+          : 'py-4 sm:py-6 bg-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-5 lg:px-8">
+        <div className="flex items-center justify-between">
 
-          {/* Logo - Clean & Professional */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="relative">
-              <div className="bg-green-700 p-2.5 rounded-xl shadow-md">
-                <Globe className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full shadow-sm"></div>
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group relative z-10">
+            <div className="bg-green-700 p-2 sm:p-2.5 rounded-xl sm:rounded-2xl shadow-md shadow-green-900/20 group-hover:scale-105 transition-transform">
+              <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </div>
-
-            <div className="hidden sm:block">
-              <h1 className="text-2xl font-bold text-gray-900">
+            <div className="flex flex-col leading-tight">
+              <span className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
                 LPI <span className="text-green-700">AGRI</span>
-              </h1>
-              <p className="text-xs text-gray-500 font-medium tracking-wider uppercase">
-                Global Harvest Traders
-              </p>
+              </span>
+              <span className="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-[0.18em] mt-0.5">
+                Global Harvest
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            {navLinks.map(({ key, path }, index) => (
-              <motion.div
+          {/* Desktop / Tablet Navigation */}
+          <div className="hidden md:flex items-center bg-white/60 backdrop-blur-sm px-1.5 py-1.5 rounded-2xl border border-gray-200/60 shadow-sm">
+            {navLinks.map(({ key, path }) => (
+              <Link
                 key={key}
-                initial={{ opacity: 0, y: -15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08 }}
+                to={path}
+                className={`relative px-4 lg:px-5 py-2.5 text-sm lg:text-base font-semibold transition-colors rounded-xl ${
+                  isActive(path)
+                    ? 'text-green-700'
+                    : 'text-gray-700 hover:text-gray-900'
+                }`}
               >
-                <Link
-                  to={path}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive(path)
-                      ? 'text-green-700'
-                      : 'text-gray-700 hover:text-green-700'
-                  }`}
-                >
-                  {isActive(path) && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-700"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative">{t(key)}</span>
-                </Link>
-              </motion.div>
+                {isActive(path) && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute inset-0 bg-white rounded-xl shadow-sm -z-10 border border-gray-100"
+                    transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+                  />
+                )}
+                <span className="relative z-10">{t(key)}</span>
+              </Link>
             ))}
+          </div>
 
-            {/* Desktop Language Selector */}
-            <div className="relative ml-6">
+          <div className="flex items-center gap-2 sm:gap-3">
+
+            {/* Language Selector – Desktop/Tablet */}
+            <div className="hidden sm:block relative">
               <button
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className="flex items-center gap-2.5 px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:border-green-700 hover:text-green-700 transition"
+                className="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 hover:border-green-500 hover:shadow transition-all bg-white/80 backdrop-blur-sm"
+                aria-label="Change language"
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-lg">{languages.find(l => l.code === language)?.flag}</span>
+                <span className="text-xl sm:text-2xl leading-none">
+                  {languages.find(l => l.code === language)?.flag || 'GB'}
+                </span>
                 <ChevronDown className={`w-4 h-4 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
               </button>
 
               <AnimatePresence>
                 {isLangOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    className="absolute right-0 mt-3 w-64 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    className="absolute right-0 mt-3 w-64 sm:w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/70 overflow-hidden"
                   >
-                    <div className="py-3">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => { setLanguage(lang.code); setIsLangOpen(false); }}
-                          className={`w-full px-5 py-3 flex items-center justify-between text-left text-sm transition hover:bg-gray-50 ${
-                            language === lang.code ? 'text-green-700 font-medium' : 'text-gray-700'
-                          }`}
-                        >
-                          <div className="flex items-center gap-4">
-                            <span className="text-2xl">{lang.flag}</span>
-                            <span>{lang.name}</span>
-                          </div>
-                          {language === lang.code && <Check className="w-5 h-5 text-green-700" />}
-                        </button>
-                      ))}
-                    </div>
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsLangOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-5 py-3.5 text-sm font-medium transition-colors ${
+                          language === lang.code
+                            ? 'bg-green-600 text-white'
+                            : 'hover:bg-gray-50 text-gray-800'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">{lang.flag}</span>
+                          {lang.name}
+                        </div>
+                        {language === lang.code && <Check className="w-5 h-5" />}
+                      </button>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-          </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="md:hidden p-2.5 sm:p-3 rounded-xl bg-green-700 text-white hover:bg-green-800 transition-colors shadow-md"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu - Clean & Professional */}
+      {/* ─── Mobile Sidebar ──────────────────────────────────────── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] md:hidden"
             />
 
+            {/* Sidebar */}
             <motion.div
-              ref={mobileMenuRef}
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50"
+              variants={sidebarVariants}
+              initial="closed"
+              animate="opened"
+              exit="closed"
+              className="fixed inset-y-0 right-0 w-[85vw] max-w-[380px] bg-white z-[1000] shadow-2xl flex flex-col md:hidden"
             >
-              <div className="flex justify-between items-center p-6 border-b border-gray-100">
+              {/* Header */}
+              <div className="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
-                  <div className="bg-green-700 p-2.5 rounded-lg">
-                    <Globe className="w-7 h-7 text-white" />
+                  <div className="bg-green-700 p-2.5 rounded-xl">
+                    <Globe className="w-6 h-6 text-white" />
                   </div>
-                  <div>
-                    <h2 className="font-bold text-xl text-gray-900">LPI AGRI</h2>
-                    <p className="text-xs text-gray-500">Global Harvest Traders</p>
-                  </div>
+                  <span className="text-xl font-black tracking-tight">
+                    LPI <span className="text-green-700">AGRI</span>
+                  </span>
                 </div>
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-lg"
+                  className="p-3 rounded-xl hover:bg-gray-100 text-gray-600 transition-colors"
+                  aria-label="Close menu"
                 >
-                  <X className="w-6 h-6 text-gray-600" />
+                  <X className="w-7 h-7" />
                 </button>
               </div>
 
-              <nav className="p-6 space-y-2">
-                {navLinks.map(({ key, path }) => (
-                  <Link
-                    key={key}
-                    to={path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`block w-full px-5 py-4 rounded-lg text-lg font-medium transition ${
-                      isActive(path)
-                        ? 'bg-green-50 text-green-700 border border-green-200'
-                        : 'text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    {t(key)}
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Mobile Language Selector */}
-              <div className="border-t border-gray-100 p-6">
-                <p className="text-sm font-semibold text-gray-600 mb-4 flex items-center gap-2">
-                  <Globe className="w-5 h-5" /> {t('selectLanguage') || 'Language'}
-                </p>
-                <div className="space-y-2">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => { setLanguage(lang.code); setIsMobileMenuOpen(false); }}
-                      className={`w-full px-5 py-3.5 rounded-lg flex items-center justify-between text-left transition ${
-                        language === lang.code
-                          ? 'bg-green-50 text-green-700 border border-green-200 font-medium'
-                          : 'hover:bg-gray-50 text-gray-700'
-                      }`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-2xl">{lang.flag}</span>
-                        <span>{lang.name}</span>
-                      </div>
-                      {language === lang.code && <Check className="w-5 h-5" />}
-                    </button>
+              {/* Content */}
+              <div className="flex-1 overflow-y-auto px-5 sm:px-6 py-8 space-y-8">
+                {/* Navigation */}
+                <div className="space-y-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500 px-2 mb-3">
+                    {t('navigation') || 'Navigation'}
+                  </p>
+                  {navLinks.map(({ key, path }) => (
+                    <motion.div key={key} variants={itemVariants}>
+                      <Link
+                        to={path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center justify-between px-5 py-4 rounded-2xl text-lg font-semibold transition-all ${
+                          isActive(path)
+                            ? 'bg-green-600 text-white shadow-md'
+                            : 'hover:bg-gray-50 text-gray-800'
+                        }`}
+                      >
+                        {t(key)}
+                        <ArrowRight
+                          className={`w-5 h-5 transition-transform ${
+                            isActive(path) ? 'translate-x-1 opacity-100' : 'opacity-40'
+                          }`}
+                        />
+                      </Link>
+                    </motion.div>
                   ))}
                 </div>
+
+                {/* Language Selector – Mobile */}
+                <div className="pt-6 border-t border-gray-100">
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500 px-2 mb-4">
+                    Language / اللغة
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`flex flex-col items-center p-4 rounded-2xl border transition-all text-center ${
+                          language === lang.code
+                            ? 'border-green-600 bg-green-50 text-green-800'
+                            : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        <span className="text-4xl mb-2">{lang.flag}</span>
+                        <span className="text-xs font-medium">{lang.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="p-6 bg-gray-50 mt-auto border-t border-gray-100">
+                <p className="text-xs text-gray-500 text-center">
+                  LPI AGRI © {new Date().getFullYear()}
+                </p>
               </div>
             </motion.div>
           </>
