@@ -16,7 +16,7 @@ const Testimonials = () => {
       location: "Dubai, UAE",
       flag: "AE",
       rating: 5,
-      text: "LPI Agri has been our trusted partner for Basmati rice since 2021. Their 1121 Steam variety consistently delivers exceptional quality, aroma, and cooking results. On-time delivery every single time.",
+      text: "LPI Agro has been our trusted partner for Basmati rice since 2021. Their 1121 Steam variety consistently delivers exceptional quality, aroma, and cooking results. On-time delivery every single time.",
       product: "1121 Basmati Rice",
       volume: "1,200+ MT per year",
     },
@@ -71,7 +71,7 @@ const Testimonials = () => {
       location: "Singapore",
       flag: "SG",
       rating: 5,
-      text: "As an NRI, I only trust LPI Agri for Sona Masoori and Ponni rice. Their private labeling and door-to-door logistics make expansion seamless.",
+      text: "As an NRI, I only trust LPI Agro for Sona Masoori and Ponni rice. Their private labeling and door-to-door logistics make expansion seamless.",
       product: "South Indian Rice + Private Label",
       volume: "900 MT/year",
     }
@@ -103,7 +103,7 @@ const Testimonials = () => {
             Trusted by Importers Worldwide
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto">
-            200+ businesses in 25+ countries rely on LPI Agri for consistent quality and reliable supply
+            200+ businesses in 25+ countries rely on LPI Agro for consistent quality and reliable supply
           </p>
 
           {/* Trust Stats */}
@@ -193,12 +193,12 @@ const Testimonials = () => {
             Ready to Become Our Next Success Story?
           </h3>
           <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-4xl mx-auto font-light">
-            Join hundreds of importers who trust LPI Agri for quality, reliability, and growth
+            Join hundreds of importers who trust LPI Agro for quality, reliability, and growth
           </p>
 
           <div className="flex flex-col sm:flex-row gap-8 justify-center">
             <a
-              href="https://wa.me/917505266931?text=Hi%20LPI%20Agri!%20I%20saw%20your%20testimonials%20and%20want%20to%20discuss%20importing%20from%20India"
+              href="https://wa.me/917505266931?text=Hi%20LPI%20Agro!%20I%20saw%20your%20testimonials%20and%20want%20to%20discuss%20importing%20from%20India"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-white text-green-700 px-12 py-6 rounded-xl text-xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-lg"

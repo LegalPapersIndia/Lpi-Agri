@@ -52,7 +52,7 @@ const WhyUs = () => {
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-            {t('whyChooseUs') || 'Why Leading Importers Trust LPI Agri'}
+            {t('whyChooseUs') || 'Why Leading Importers Trust LPI Agro'}
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed">
             {t('whyChooseUsDesc') || 'We deliver more than products — we deliver reliability, transparency, and long-term partnership success'}
@@ -128,15 +128,15 @@ const WhyUs = () => {
           className="mt-32 bg-green-700 rounded-3xl p-16 text-center text-white shadow-2xl"
         >
           <h3 className="text-4xl md:text-6xl font-bold mb-6">
-            {t('readyToImport') || 'Ready to Grow Your Business with Premium Indian Agri Products?'}
+            {t('readyToImport') || 'Ready to Grow Your Business with Premium Indian Agro Products?'}
           </h3>
           <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-4xl mx-auto font-light">
-            {t('readyToImportDesc') || 'Join 200+ importers worldwide who rely on LPI Agri for consistent quality and reliable supply'}
+            {t('readyToImportDesc') || 'Join 200+ importers worldwide who rely on LPI Agro for consistent quality and reliable supply'}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
             <a
-              href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%27m%20interested%20in%20importing%20premium%20Indian%20agricultural%20products"
+              href="https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20I%27m%20interested%20in%20importing%20premium%20Indian%20agricultural%20products"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-white text-green-700 px-12 py-6 rounded-xl text-xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"

@@ -187,7 +187,7 @@ const Footer = () => {
           className="mt-16 pt-10 border-t border-green-700 text-center"
         >
           <p className="text-green-300 font-medium">
-            © {currentYear} <span className="text-white font-bold">LPI AGRI</span> • All Rights Reserved
+            © {currentYear} <span className="text-white font-bold">LPI AGRO</span> • All Rights Reserved
           </p>
           <p className="text-green-400 text-sm mt-3">
             Proudly Exporting India’s Finest Harvest Worldwide

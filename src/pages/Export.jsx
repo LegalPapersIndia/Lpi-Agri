@@ -158,7 +158,7 @@ export default function Export() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-center mb-16 text-green-100"
           >
-            Why Global Importers Choose LPI Agri
+            Why Global Importers Choose LPI Agro
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -203,11 +203,11 @@ export default function Export() {
             transition={{ delay: 0.3 }}
             className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto"
           >
-            Join 200+ global partners who trust LPI Agri for quality, reliability, and growth
+            Join 200+ global partners who trust LPI Agro for quality, reliability, and growth
           </motion.p>
 
           <a
-            href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%27m%20ready%20to%20import%20from%20your%20export%20range"
+            href="https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20I%27m%20ready%20to%20import%20from%20your%20export%20range"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-4 bg-green-700 hover:bg-green-800 text-white px-12 py-6 rounded-xl text-2xl font-bold uppercase tracking-wider transition-all shadow-xl"

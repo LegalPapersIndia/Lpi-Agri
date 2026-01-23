@@ -41,7 +41,7 @@ export default function About() {
             transition={{ duration: 1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6"
           >
-            LPI AGRI
+            LPI AGRO
           </motion.h1>
           <motion.p
             initial={{ y: 40, opacity: 0 }}
@@ -88,7 +88,7 @@ export default function About() {
               <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-8">Who We Are</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  <strong className="text-green-700">LPI Agri</strong> is a leading Indian agricultural export company founded in 2015, headquartered in Noida with direct operations from Gujarat and Punjab.
+                  <strong className="text-green-700">LPI Agro</strong> is a leading Indian agricultural export company founded in 2015, headquartered in Noida with direct operations from Gujarat and Punjab.
                 </p>
                 <p>
                   We work directly with over <strong className="text-green-700">1 million farmers</strong>, eliminating middlemen to ensure fair prices and complete traceability.
@@ -252,12 +252,12 @@ export default function About() {
             Ready to Partner with India’s Leading Exporter?
           </h2>
           <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-3xl mx-auto font-light">
-            Join 200+ global importers who trust LPI Agri for quality, reliability, and growth
+            Join 200+ global importers who trust LPI Agro for quality, reliability, and growth
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
-              href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20want%20to%20start%20importing%20premium%20Indian%20products"
+              href="https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20I%20want%20to%20start%20importing%20premium%20Indian%20products"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-4 bg-white text-green-700 px-12 py-6 rounded-xl text-xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-lg"

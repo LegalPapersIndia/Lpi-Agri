@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col leading-tight">
               <span className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
-                LPI <span className="text-green-700">AGRI</span>
+                LPI <span className="text-green-700">AGRO</span>
               </span>
               <span className="text-[9px] sm:text-[10px] font-bold text-gray-500 uppercase tracking-[0.18em] mt-0.5">
                 Global Harvest
@@ -274,7 +274,7 @@ const Navbar = () => {
               {/* Footer */}
               <div className="p-6 bg-gray-50 mt-auto border-t border-gray-100">
                 <p className="text-xs text-gray-500 text-center">
-                  LPI AGRI © {new Date().getFullYear()}
+                  LPI AGRO © {new Date().getFullYear()}
                 </p>
               </div>
             </motion.div>

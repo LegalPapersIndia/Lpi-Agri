@@ -175,7 +175,7 @@ const ProductDetail = () => {
               {/* CTA Buttons */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
                 <a
-                  href={`https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%20need%20a%20quote%20for%20${encodeURIComponent(product.name)}%20(${product.moq}%20minimum)`}
+                  href={`https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20I%20need%20a%20quote%20for%20${encodeURIComponent(product.name)}%20(${product.moq}%20minimum)`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center gap-4 bg-green-700 hover:bg-green-800 text-white px-10 py-6 rounded-xl text-xl font-bold uppercase tracking-wider transition-all shadow-xl"
@@ -221,7 +221,7 @@ const ProductDetail = () => {
             Ready to Import {product.name}?
           </h2>
           <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-3xl mx-auto">
-            Join 200+ global importers who trust LPI Agri for premium quality and reliable supply
+            Join 200+ global importers who trust LPI Agro for premium quality and reliable supply
           </p>
           <a
             href={`https://wa.me/917505266931?text=URGENT:%20Need%20quote%20for%20${encodeURIComponent(product.name)}%20-%20${product.moq}`}

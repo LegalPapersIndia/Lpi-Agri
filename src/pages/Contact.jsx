@@ -25,7 +25,7 @@ export default function Contact() {
     setFormData({ name: '', company: '', email: '', phone: '', country: '', product: '', message: '' });
   };
 
-  const whatsappLink = "https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20I%27m%20interested%20in%20importing%20premium%20Indian%20agri%20products";
+  const whatsappLink = "https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20I%27m%20interested%20in%20importing%20premium%20Indian%20agro%20products";
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,7 +49,7 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="text-xl md:text-3xl text-green-100 font-light max-w-4xl mx-auto leading-relaxed"
           >
-            Start Your Import Journey with India’s Most Trusted Agri Exporter
+            Start Your Import Journey with India’s Most Trusted Agro Exporter
           </motion.p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
@@ -91,9 +91,9 @@ export default function Contact() {
 
               <div className="space-y-10">
                 {[
-                  { icon: Building2, title: "Corporate Office", content: "LPI Agri Exports Pvt Ltd\n Noida , Maharashtra\nIndia" },
+                  { icon: Building2, title: "Corporate Office", content: "LPI Agro Exports Pvt Ltd\n Noida , Maharashtra\nIndia" },
                   { icon: Phone, title: "Phone & WhatsApp", content: "+91 75052 66931\n24/7 Global Support" },
-                  { icon: Mail, title: "Email", content: "export@lpiagri.com\ninfo@lpiagri.com" },
+                  { icon: Mail, title: "Email", content: "export@lpiagro.com\ninfo@lpiagro.com" },
                   { icon: Clock, title: "Working Hours", content: "Monday–Saturday: 9:00 AM – 8:00 PM IST\nEmergency Support: 24/7" }
                 ].map((item, i) => (
                   <motion.div
@@ -122,7 +122,7 @@ export default function Contact() {
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="block bg-green-700 hover:bg-green-600 text-white px-6 py-4 rounded-xl font-semibold text-center transition">
                     Open WhatsApp Chat
                   </a>
-                  <a href="mailto:export@lpiagri.com" className="block bg-white border-2 border-green-700 text-green-700 hover:bg-green-50 px-6 py-4 rounded-xl font-semibold text-center transition">
+                  <a href="mailto:export@lpiagro.com" className="block bg-white border-2 border-green-700 text-green-700 hover:bg-green-50 px-6 py-4 rounded-xl font-semibold text-center transition">
                     Send Email Inquiry
                   </a>
                 </div>
@@ -208,7 +208,7 @@ export default function Contact() {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="LPI Agri Office - Noida Region"
+              title="LPI Agro Office - Noida Region"
               className="w-full"
             />
           </div>
@@ -223,7 +223,7 @@ export default function Contact() {
             Your Trusted Partner from India to the World
           </h2>
           <p className="text-xl md:text-2xl text-green-100 mb-12 max-w-3xl mx-auto font-light">
-            200+ global importers trust LPI Agri for quality, reliability, and on-time delivery
+            200+ global importers trust LPI Agro for quality, reliability, and on-time delivery
           </p>
           <a
             href={whatsappLink}

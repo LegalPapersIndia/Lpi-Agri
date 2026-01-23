@@ -9,11 +9,11 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: language === 'hi' ? "नमस्ते! LPI Agri में आपका स्वागत है\nमैं आपका निर्यात सहायक हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ?" :
-            language === 'ar' ? "مرحباً! مرحباً بكم في LPI Agri\nأنا مساعد التصدير الخاص بك. كيف يمكنني مساعدتك اليوم؟" :
-            language === 'ru' ? "Здравствуйте! Добро пожаловать в LPI Agri\nЯ ваш помощник по экспорту. Чем могу помочь?" :
-            language === 'zh' ? "您好！欢迎来到 LPI Agri\n我是您的出口助手。今天如何为您服务？" :
-            "Hello! Welcome to LPI Agri\nI'm your dedicated export assistant. How can I assist you today?",
+      text: language === 'hi' ? "नमस्ते! LPI Agro में आपका स्वागत है\nमैं आपका निर्यात सहायक हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ?" :
+            language === 'ar' ? "مرحباً! مرحباً بكم في LPI Agro\nأنا مساعد التصدير الخاص بك. كيف يمكنني مساعدتك اليوم؟" :
+            language === 'ru' ? "Здравствуйте! Добро пожаловать в LPI Agro\nЯ ваш помощник по экспорту. Чем могу помочь?" :
+            language === 'zh' ? "您好！欢迎来到 LPI Agro\n我是您的出口助手。今天如何为您服务？" :
+            "Hello! Welcome to LPI Agro\nI'm your dedicated export assistant. How can I assist you today?",
       options: [
         { text: t('rice') || "Rice & Basmati", action: "rice" },
         { text: t('spices') || "Spices", action: "spices" },

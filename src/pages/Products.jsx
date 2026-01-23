@@ -212,7 +212,7 @@ export default function Products() {
             Get live prices and samples — reply within 5 minutes
           </p>
           <a
-            href="https://wa.me/917505266931?text=Hello%20LPI%20Agri!%20Please%20send%20latest%20export%20prices"
+            href="https://wa.me/917505266931?text=Hello%20LPI%20Agro!%20Please%20send%20latest%20export%20prices"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-6 bg-white text-green-700 px-16 py-8 rounded-xl text-2xl md:text-3xl font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-2xl"

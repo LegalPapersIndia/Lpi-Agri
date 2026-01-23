@@ -59,7 +59,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[0.9]"
           >
-            LPI <span className="text-green-500">AGRI</span>
+            LPI <span className="text-green-500">AGRO</span>
             <br />
             <span className="text-3xl md:text-5xl lg:text-6xl font-bold opacity-90 mt-4 block">
               {t('exportingTrust') || "India's Finest Harvest"}
